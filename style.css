@@ -1,0 +1,49 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120vh;
+    flex-direction: column;
+    background-color: whitesmoke;
+}
+
+.welcome {
+    text-align: center;
+}
+
+.logo {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.home-logo {
+    width: 200px;
+    height: auto;
+    cursor: pointer;
+
+.bottom-menu {
+    display: flex;
+    justify-content: space-around;
+    background-color: whitesmoke;
+    padding: 10px;
+    justify-content: end;
+}
+
+.menu-btn {
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-btn:hover {
+    transform: scale(1.1);
+}
