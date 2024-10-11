@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>info</title>
+</head>
+<body>
+
+    <title>Chapter</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: whitesmoke;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        a1 {
+            color: red;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        a1:hover {
+            text-decoration: underline; /* Optional: Adds underline on hover */
+        }
+
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: whitesmoke;
+            padding: 10px;
+            justify-content: end;
+        }
+
+        .menu-btn {
+            width: 50px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Chapter</h1>
+
+<div class="container">
+    <a1 onclick="navigateToChapter1()">Chapter 1</a1>
+</div>
+
+    <div class = "bottom menu">
+        <a href="home.html">
+            <img src="image/homebtn.png" alt="Home" class ="menu-btn"
+        </a>
+        <a href="chapter.html">
+            <img src="image/chapbtn.png" alt="chapter" class ="menu-btn"
+        </a>
+        <a href="search.html">
+            <img src="image/searchbtn.png" alt="search" class ="menu-btn"
+        </a>
+        <a href="info.html">
+            <img src="image/infobtn.png" alt="info" class ="menu-btn"
+        </a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

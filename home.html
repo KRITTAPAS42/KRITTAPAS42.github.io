@@ -4,12 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <title>home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: whitesmoke;
+        }
+
+        .home-logo {
+            width: 270px;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: whitesmoke;
+            padding: 10px;
+            justify-content: end;
+        }
+
+        .menu-btn {
+            width: 50px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+
     <div class="home-logo">
         <img src="image/logo.png" alt="Logo" class="home-logo">
     </div>
+
     <div class = "bottom menu">
         <a href="home.html">
             <img src="image/homebtn.png" alt="Home" class ="menu-btn"

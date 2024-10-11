@@ -4,10 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>info</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+
+    <title>Information</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: whitesmoke;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        a1 {
+            color: red;
+            font-weight: bold;
+            cursor: pointer; /* Makes the cursor a pointer like a link */
+            text-decoration: none;
+        }
+        
+        a1:hover {
+            text-decoration: underline; /* Optional: Adds underline on hover */
+        }
+
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: whitesmoke;
+            padding: 10px;
+            justify-content: end;
+        }
+
+        .menu-btn {
+            width: 50px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ข้อมูลผู้จัดทำ</h1>
+</div>
+
+<p>เว็บแอปพลิเคชั่นนี้เป็นส่วนหนึ่งของโครงงาน....</p>
+
+ <a1 onclick="window.open('https://example.com', '_blank')">แบบประเมิน</a1>
+
     <div class = "bottom menu">
         <a href="home.html">
             <img src="image/homebtn.png" alt="Home" class ="menu-btn"
