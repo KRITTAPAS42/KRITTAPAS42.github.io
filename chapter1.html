@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box; 
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: whitesmoke;
+            height: 100vh; 
+            overflow-y: auto; 
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+            margin: 20px; 
+        }
+
+        .container {
+            margin: 5px;
+            padding: 20px;
+            width: 60%;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .chapter-link {
+            color: red;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .chapter-link:hover {
+            font-weight: none; 
+        }
+
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: whitesmoke;
+            padding: 10px;
+            width: 100%;
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+            z-index: 10; 
+        }
+
+        .menu-btn {
+            width: 50px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        a {
+            display: block; 
+            text-decoration: none; 
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Chapter 1</h1>
+
+    <div class="container">
+        <a href="sude101.html">sude 1</a>
+    </div>
+
+    <div class="container">
+        <a href="sude102.html">sude 2</a>
+    </div>
+
+    <div class="container">
+        <a href="sude103.html">sude 3</a>
+    </div>
+
+    <div class="container">
+        <a href="sude104.html">sude 4</a>
+    </div>
+
+    <div class="container">
+        <a href="sude105.html">sude 5</a>
+    </div>
+
+    <div class="container">
+        <a href="sude106.html">sude 6</a>
+    </div>
+
+    <div class="container">
+        <a href="sude107.html">sude 7</a>
+    </div>
+
+    <div class="container">
+        <a href="sude108.html">sude 8</a>
+    </div>
+
+    <div class="container">
+        <a href="sude109.html">sude 9</a>
+    </div>
+
+    <div class="container">
+        <a href="sude110.html">sude 10</a>
+    </div>
+
+<div class="bottom-menu">
+    <a href="home.html">
+        <img src="image/homebtn.png" alt="Home" class="menu-btn">
+    </a>
+    <a href="chapter.html">
+        <img src="image/chapbtn.png" alt="Chapter" class="menu-btn">
+    </a>
+    <a href="search.html">
+        <img src="image/searchbtn.png" alt="Search" class="menu-btn">
+    </a>
+    <a href="info.html">
+        <img src="image/infobtn.png" alt="Info" class="menu-btn">
+    </a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
