@@ -9,30 +9,35 @@
             margin: 0;
             padding: 0;
             display: flex;
-            align-items: center;
             flex-direction: column;
+            align-items: center; 
             font-family: Arial, sans-serif;
             background-color: whitesmoke;
+            height: 100vh;
+            box-sizing: border-box; 
         }
 
         .container {
             max-width: 600px;
-            margin: 0 auto;
+            margin: 20px; 
             padding: 20px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            justify-content: center; 
         }
 
         h1 {
             text-align: center;
             color: #333;
+            margin: 0; 
         }
 
         p {
             font-size: 18px;
             color: #555;
             line-height: 1.6;
+            margin-top: 0; 
         }
 
         .link {
@@ -40,6 +45,9 @@
             font-weight: bold;
             cursor: pointer; 
             text-decoration: none;
+            text-align: center; 
+            display: block; 
+            margin-top: 10px; 
         }
         
         .link:hover {
@@ -51,6 +59,10 @@
             justify-content: space-around;
             background-color: whitesmoke;
             padding: 10px;
+            width: 100%; 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
         }
 
         .menu-btn {
@@ -64,6 +76,10 @@
             transform: scale(1.1);
         }
 
+        .spacer {
+            margin-bottom: 50px; /* Adjust this value according to your menu height */
+        }
+        
     </style>
 </head>
 <body>
@@ -73,8 +89,9 @@
 </div>
 
 <p>เว็บแอปพลิเคชั่นนี้เป็นส่วนหนึ่งของโครงงาน....</p>
-
 <a class="link" onclick="window.open('https://example.com')">แบบประเมิน</a>
+
+<div class="spacer"></div> <!-- Spacer to prevent overlap with the bottom menu -->
 
 <div class="bottom-menu">
     <a href="home.html">
