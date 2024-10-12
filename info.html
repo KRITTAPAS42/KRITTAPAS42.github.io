@@ -3,10 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>info</title>
-</head>
-<body>
-
     <title>Information</title>
     <style>
         body {
@@ -39,15 +35,15 @@
             line-height: 1.6;
         }
 
-        a1 {
+        .link {
             color: red;
             font-weight: bold;
-            cursor: pointer; /* Makes the cursor a pointer like a link */
+            cursor: pointer; 
             text-decoration: none;
         }
         
-        a1:hover {
-            text-decoration: underline; /* Optional: Adds underline on hover */
+        .link:hover {
+            text-decoration: underline; 
         }
 
         .bottom-menu {
@@ -55,7 +51,6 @@
             justify-content: space-around;
             background-color: whitesmoke;
             padding: 10px;
-            justify-content: end;
         }
 
         .menu-btn {
@@ -79,22 +74,23 @@
 
 <p>เว็บแอปพลิเคชั่นนี้เป็นส่วนหนึ่งของโครงงาน....</p>
 
- <a1 onclick="window.open('https://example.com', '_blank')">แบบประเมิน</a1>
+<a class="link" onclick="window.open('https://example.com')">แบบประเมิน</a>
 
-    <div class = "bottom menu">
-        <a href="home.html">
-            <img src="image/homebtn.png" alt="Home" class ="menu-btn"
-        </a>
-        <a href="chapter.html">
-            <img src="image/chapbtn.png" alt="chapter" class ="menu-btn"
-        </a>
-        <a href="search.html">
-            <img src="image/searchbtn.png" alt="search" class ="menu-btn"
-        </a>
-        <a href="info.html">
-            <img src="image/infobtn.png" alt="info" class ="menu-btn"
-        </a>
-    </div>
-    <script src="script.js"></script>
+<div class="bottom-menu">
+    <a href="home.html">
+        <img src="image/homebtn.png" alt="Home" class="menu-btn">
+    </a>
+    <a href="chapter.html">
+        <img src="image/chapbtn.png" alt="Chapter" class="menu-btn">
+    </a>
+    <a href="search.html">
+        <img src="image/searchbtn.png" alt="Search" class="menu-btn">
+    </a>
+    <a href="info.html">
+        <img src="image/infobtn.png" alt="Info" class="menu-btn">
+    </a>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
