@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: whitesmoke;
+            height: 100vh; 
+            overflow-y: auto; 
+        }
+
+        #search-container {
+            margin: 20px auto;
+            width: 90%; 
+            max-width: 300px; 
+            text-align: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        li {
+            padding: 8px;
+            background-color: #f0f0f0;
+            margin-top: 4px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #ddd;
+        }
+
+        .bottom-menu {
+            display: flex;
+            justify-content: space-around;
+            background-color: whitesmoke;
+            padding: 10px;
+            width: 100%; 
+            position: fixed; 
+            bottom: 0; 
+            left: 0; 
+        }
+
+        .menu-btn {
+            width: 50px;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="search-container">
+        <h2>Search</h2>
+        <input type="text" id="search-bar" onkeyup="showSuggestions()" placeholder="Search for a keyword...">
+        <ul id="suggestion-list"></ul>
+    </div>
+
+    <div class="bottom-menu">
+        <a href="home.html">
+            <img src="image/homebtn.png" alt="Home" class="menu-btn">
+        </a>
+        <a href="sude01.html">
+            <img src="image/chapbtn.png" alt="Chapter" class="menu-btn">
+        </a>
+        <a href="search.html">
+            <img src="image/searchbtn.png" alt="Search" class="menu-btn">
+        </a>
+        <a href="info.html">
+            <img src="image/infobtn.png" alt="Info" class="menu-btn">
+        </a>
+    </div>
+
+    <script>
+        const keywords = {
+            "sude01-1": "sude01.html",  
+            "sude01-2": "sude01.html",  
+        };
+
+        function showSuggestions() {
+            const query = document.getElementById('search-bar').value.toLowerCase();
+            const suggestionList = document.getElementById('suggestion-list');
+            suggestionList.innerHTML = ''; 
+
+            if (query) {
+                Object.keys(keywords).forEach(keyword => {
+                    if (keyword.includes(query)) {
+                        const li = document.createElement('li');
+                        li.textContent = keyword; 
+                        li.onclick = function() {
+                            window.location.href = keywords[keyword]; 
+                        };
+                        suggestionList.appendChild(li);
+                    }
+                });
+            }
+        }
+    </script>
+
+</body>
+</html>
