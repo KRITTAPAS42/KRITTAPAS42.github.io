@@ -3,124 +3,561 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Page</title>
+    <title>Physics Formula Search</title>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             font-family: Arial, sans-serif;
-            background-color: whitesmoke;
-            height: 100vh; 
-            overflow-y: auto; 
+            padding: 20px;
         }
-
-        #search-container {
-            margin: 20px auto;
-            width: 90%; 
-            max-width: 300px; 
-            text-align: center;
+        h1 {
+            font-size: 24px;
         }
-
         input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin-top: 10px;
-        }
-
-        li {
+            width: 300px;
             padding: 8px;
-            background-color: #f0f0f0;
-            margin-top: 4px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+            font-size: 16px;
         }
-
-        li:hover {
-            background-color: #ddd;
+        #result {
+            margin-top: 20px;
         }
-
-        .bottom-menu {
-            display: flex;
-            justify-content: space-around;
-            background-color: whitesmoke;
-            padding: 10px;
-            width: 100%; 
-            position: fixed; 
-            bottom: 0; 
-            left: 0; 
-        }
-
-        .menu-btn {
-            width: 50px;
-            height: auto;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .menu-btn:hover {
-            transform: scale(1.1);
+        a {
+            text-decoration: none;
+            color: blue;
         }
     </style>
 </head>
 <body>
-
-    <div id="search-container">
-        <h2>Search</h2>
-        <input type="text" id="search-bar" onkeyup="showSuggestions()" placeholder="Search for a keyword...">
-        <ul id="suggestion-list"></ul>
-    </div>
-
-    <div class="bottom-menu">
-        <a href="home.html">
-            <img src="image/homebtn.png" alt="Home" class="menu-btn">
-        </a>
-        <a href="sude01.html">
-            <img src="image/chapbtn.png" alt="Chapter" class="menu-btn">
-        </a>
-        <a href="search.html">
-            <img src="image/searchbtn.png" alt="Search" class="menu-btn">
-        </a>
-        <a href="info.html">
-            <img src="image/infobtn.png" alt="Info" class="menu-btn">
-        </a>
-    </div>
+    <h1>Physics Formula Search</h1>
+    <input type="text" id="search" placeholder="Search for a keyword">
+    <div id="result"></div>
 
     <script>
         const keywords = {
-            "sude01-1": "sude01.html",  
-            "sude01-2": "sude01.html",  
+            "sude01.html": [
+                "velocity", "speed", "distance", "time", "v", "d", "t", "m/s", "s", "m",
+                "v = s/t"
+            ],
+            "sude02.html": [
+                "velocity", "acceleration", "time", "initial velocity", "final velocity", "a", "t", "u", "v", "m/s²",
+                "v = u + at"
+            ],
+            "sude03.html": [
+                "displacement", "initial velocity", "acceleration", "time", "s", "u", "v", "t", "m", "s",
+                "s = ut + 1/2 at²"
+            ],
+            "sude04.html": [
+                "velocity", "acceleration", "displacement", "v", "u", "s", "a", "m/s",
+                "v² = u² + 2as"
+            ],
+            "sude05.html": [
+                "acceleration", "final velocity", "initial velocity", "time", "a", "v", "vₒ", "t", "m/s²",
+                "a = (v_f - v_i) / t"
+            ],
+            "sude06.html": [
+                "displacement", "final velocity", "initial velocity", "time", "s", "u", "v", "t",
+                "s = (v_f + v_i) / 2 * t"
+            ],
+            "sude07.html": [
+                "velocity", "initial velocity", "acceleration", "time", "v", "vₒ", "a", "t",
+                "v = vₒ + at"
+            ],
+            "sude08.html": [
+                "displacement", "initial velocity", "velocity", "time", "s", "vₒ", "v", "t",
+                "s = (vₒ + v) / 2 * t"
+            ],
+            "sude09.html": [
+                "acceleration", "velocity", "initial velocity", "time", "a", "v", "vₒ", "t",
+                "a = (v - vₒ) / t"
+            ],
+            "sude10.html": [
+                "velocity", "initial velocity", "acceleration", "displacement", "v", "vₒ", "a", "s",
+                "v² = vₒ² + 2as"
+            ],
+            "sude11.html": [
+                "time", "velocity", "initial velocity", "acceleration", "t", "v", "vₒ", "a",
+                "t = (v - vₒ) / a"
+            ],
+            "sude12.html": [
+                "position", "velocity", "acceleration", "time", "x", "xₒ", "vₒ", "a", "t",
+                "x(t) = xₒ + vₒ t + 1/2 a t²"
+            ],
+            "sude13.html": [
+                "centripetal acceleration", "velocity", "radius", "aₓ", "v", "r",
+                "aₓ = v² / r"
+            ],
+            "sude14.html": [
+                "centripetal force", "mass", "velocity", "radius", "Fₓ", "m", "v", "r",
+                "Fₓ = mv² / r"
+            ],
+            "sude15.html": [
+                "orbital velocity", "gravitational constant", "mass", "radius", "v", "G", "M", "r",
+                "v_c = √(GM / r)"
+            ],
+            "sude16.html": [
+                "net force", "mass", "acceleration", "F", "m", "a",
+                "Fₓ = ma"
+            ],
+            "sude17.html": [
+                "frictional force", "coefficient of friction", "normal force", "Fₓ", "μ", "N",
+                "Fₓ = μN"
+            ],
+            "sude18.html": [
+                "gravitational force", "mass", "distance", "F", "G", "m₁", "m₂", "r",
+                "Fₓ = G (m₁ m₂) / r²"
+            ],
+            "sude19.html": [
+                "work", "force", "displacement", "W", "F", "d", "θ",
+                "W = F • d"
+            ],
+            "sude20.html": [
+                "power", "work", "time", "P", "W", "t",
+                "P = W / t"
+            ],
+            "sude21.html": [
+                "kinetic energy", "mass", "velocity", "KE", "m", "v",
+                "KE = 1/2 m v²"
+            ],
+            "sude22.html": [
+                "potential energy", "mass", "height", "PE", "m", "g", "h",
+                "PE = mgh"
+            ],
+            "sude23.html": [
+                "momentum", "mass", "velocity", "p", "m", "v",
+                "p = mv"
+            ],
+            "sude24.html": [
+                "impulse", "force", "time", "J", "F", "t",
+                "J = Ft"
+            ],
+            "sude25.html": [
+                "work-energy theorem", "work", "energy", "W", "E",
+                "W = ΔE"
+            ],
+            "sude26.html": [
+                "elastic potential energy", "spring constant", "displacement", "Eₚ", "k", "x",
+                "Eₚ = 1/2 k x²"
+            ],
+            "sude27.html": [
+                "power", "work", "time", "P", "W", "t",
+                "P = W / t"
+            ],
+            "sude28.html": [
+                "wave speed", "frequency", "wavelength", "v", "f", "λ",
+                "v = fλ"
+            ],
+            "sude29.html": [
+                "period", "frequency", "T", "f",
+                "T = 1 / f"
+            ],
+            "sude30.html": [
+                "frequency", "period", "f", "T",
+                "f = 1 / T"
+            ],
+            "sude31.html": [
+                "wave frequency", "wavelength", "wave speed", "f", "λ", "v",
+                "v = fλ"
+            ],
+            "sude32.html": [
+                "sound speed", "temperature", "v", "T",
+                "v = 331.3 + 0.6T"
+            ],
+            "sude33.html": [
+                "refraction", "angle of incidence", "angle of refraction", "n₁", "n₂", "θᵢ", "θᵣ",
+                "n₁ sin(θᵢ) = n₂ sin(θᵣ)"
+            ],
+            "sude34.html": [
+                "lens equation", "focal length", "object distance", "image distance", "f", "dₒ", "dᵢ",
+                "1/f = 1/dₒ + 1/dᵢ"
+            ],
+            "sude35.html": [
+                "magnification", "image height", "object height", "image distance", "object distance", "M", "hᵢ", "hₒ", "dᵢ", "dₒ",
+                "M = hᵢ / hₒ = -dᵢ / dₒ"
+            ],
+            "sude36.html": [
+                "electric force", "charge", "distance", "F", "q₁", "q₂", "r",
+                "F = k(q₁q₂) / r²"
+            ],
+            "sude37.html": [
+                "electric field", "electric force", "charge", "E", "F", "q",
+                "E = F / q"
+            ],
+            "sude38.html": [
+                "electric potential", "electric field", "distance", "V", "E", "d",
+                "V = Ed"
+            ],
+            "sude39.html": [
+                "electric potential energy", "charge", "electric potential", "U", "q", "V",
+                "U = qV"
+            ],
+            "sude40.html": [
+                "Coulomb's Law", "electric force", "charge", "distance", "F", "q₁", "q₂", "r",
+                "F = k(q₁q₂) / r²"
+            ],
+            "sude41.html": [
+                "current", "charge", "time", "I", "q", "t",
+                "I = q / t"
+            ],
+            "sude42.html": [
+                "Ohm's Law", "voltage", "current", "resistance", "V", "I", "R",
+                "V = IR"
+            ],
+            "sude43.html": [
+                "resistance", "resistivity", "length", "area", "R", "ρ", "L", "A",
+                "R = ρL / A"
+            ],
+            "sude44.html": [
+                "power", "current", "voltage", "P", "I", "V",
+                "P = IV"
+            ],
+            "sude45.html": [
+                "energy", "power", "time", "E", "P", "t",
+                "E = Pt"
+            ],
+            "sude46.html": [
+                "magnetic force", "charge", "velocity", "magnetic field", "F", "q", "v", "B",
+                "F = qvB sin(θ)"
+            ],
+            "sude47.html": [
+                "magnetic field", "current", "length", "B", "I", "L", "θ",
+                "B = μ₀I / 2πr"
+            ],
+            "sude48.html": [
+                "induced emf", "magnetic flux", "time", "E", "Φ", "t",
+                "E = -dΦ/dt"
+            ],
+            "sude49.html": [
+                "self-inductance", "magnetic flux", "current", "L", "Φ", "I",
+                "L = Φ / I"
+            ],
+            "sude50.html": [
+                "resonance frequency", "inductance", "capacitance", "f", "L", "C",
+                "f = 1 / 2π√(LC)"
+            ],
+            "sude51.html": [
+                "formula", "keyword"
+            ],
+            "sude51.html": [
+                "kinetic energy", "momentum", "force", "power", "energy", "velocity", "mass"
+            ],
+            "sude52.html": [
+                "work", "energy", "force", "displacement", "work-energy theorem"
+            ],
+            "sude53.html": [
+                "law of conservation of momentum", "momentum", "force", "collision", "elastic", "inelastic"
+            ],
+            "sude54.html": [
+                "elastic potential energy", "spring constant", "displacement", "force", "Hooke's law"
+            ],
+            "sude55.html": [
+                "pressure", "force", "area", "fluid mechanics", "hydraulic systems"
+            ],
+            "sude56.html": [
+                "velocity of sound", "temperature", "air", "speed of sound", "gas laws"
+            ],
+            "sude57.html": [
+                "charge", "electric field", "force", "electric potential", "electric potential energy"
+            ],
+            "sude58.html": [
+                "faradays law", "electromagnetic induction", "magnetic field", "flux", "induced emf"
+            ],
+            "sude59.html": [
+                "electric power", "voltage", "current", "resistance", "Ohm's law", "power"
+            ],
+            "sude60.html": [
+                "charge distribution", "electric field", "Coulomb's law", "electric flux"
+            ],
+            "sude61.html": [
+                "gravitational force", "gravity", "mass", "distance", "Newton's law of gravitation"
+            ],
+            "sude62.html": [
+                "uniform circular motion", "centripetal force", "velocity", "radius", "angular velocity"
+            ],
+            "sude63.html": [
+                "magnetic field", "current", "Ampere's law", "electromagnetism", "force"
+            ],
+            "sude64.html": [
+                "speed of light", "Einstein", "special relativity", "time dilation", "mass-energy equivalence"
+            ],
+            "sude65.html": [
+                "quantum mechanics", "wave function", "uncertainty principle", "Schrodinger", "quantum states"
+            ],
+            "sude66.html": [
+                "momentum", "angular momentum", "conservation", "rotational motion"
+            ],
+            "sude67.html": [
+                "waves", "frequency", "amplitude", "period", "wave energy"
+            ],
+            "sude68.html": [
+                "resonance", "frequency", "oscillations", "vibration", "sound waves"
+            ],
+            "sude69.html": [
+                "electric circuits", "voltage", "current", "resistance", "Ohm's law", "series", "parallel"
+            ],
+            "sude70.html": [
+                "optical lenses", "magnification", "focal length", "image formation"
+            ],
+            "sude71.html": [
+                "wave-particle duality", "photon", "electron", "light", "de Broglie"
+            ],
+            "sude72.html": [
+                "work-energy theorem", "energy conservation", "force", "power"
+            ],
+            "sude73.html": [
+                "buoyancy", "Archimedes' principle", "displacement", "fluid", "density"
+            ],
+            "sude74.html": [
+                "electric charge", "Coulomb's law", "force", "electric field", "point charge"
+            ],
+            "sude75.html": [
+                "neutron", "nuclear physics", "mass-energy equivalence", "nuclear energy"
+            ],
+            "sude76.html": [
+                "pressure in fluids", "hydrostatic pressure", "fluid mechanics", "height", "density"
+            ],
+            "sude77.html": [
+                "conservation of energy", "kinetic energy", "potential energy", "work", "mechanical energy"
+            ],
+            "sude78.html": [
+                "thermal expansion", "temperature", "length change", "materials", "heat"
+            ],
+            "sude79.html": [
+                "phase changes", "latent heat", "melting point", "boiling point", "thermal energy"
+            ],
+            "sude80.html": [
+                "thermodynamics", "first law", "heat", "work", "internal energy"
+            ],
+            "sude81.html": [
+                "second law of thermodynamics", "entropy", "irreversibility", "heat engines"
+            ],
+            "sude82.html": [
+                "entropy", "disorder", "thermodynamics", "heat", "irreversible processes"
+            ],
+            "sude83.html": [
+                "thermodynamic equilibrium", "heat", "work", "entropy", "temperature"
+            ],
+            "sude84.html": [
+                "work done", "force", "displacement", "energy", "Joules"
+            ],
+            "sude85.html": [
+                "gravitational potential energy", "mass", "height", "earth", "potential energy"
+            ],
+            "sude86.html": [
+                "energy conversion", "mechanical work", "heat", "efficiency", "thermodynamic"
+            ],
+            "sude87.html": [
+                "light", "reflection", "refraction", "lenses", "mirrors", "optical systems"
+            ],
+            "sude88.html": [
+                "geometric optics", "focal length", "concave", "convex", "lenses"
+            ],
+            "sude89.html": [
+                "magnification", "lens formula", "image formation", "focal length"
+            ],
+            "sude90.html": [
+                "quantum mechanics", "Planck's constant", "wave function", "uncertainty"
+            ],
+            "sude91.html": [
+                "nuclear decay", "half-life", "radiation", "unstable nucleus"
+            ],
+            "sude92.html": [
+                "nuclear fusion", "nuclear fission", "energy", "reactors"
+            ],
+            "sude93.html": [
+                "acceleration", "displacement", "force", "velocity", "kinematics"
+            ],
+            "sude94.html": [
+                "Coulomb's law", "electric field", "electric potential", "charge", "distance"
+            ],
+            "sude95.html": [
+                "Bernoulli's principle", "fluid dynamics", "pressure", "velocity", "energy conservation"
+            ],
+            "sude96.html": [
+                "torque", "angular motion", "moment of inertia", "angular acceleration"
+            ],
+            "sude97.html": [
+                "angular velocity", "rotational motion", "kinetic energy", "momentum"
+            ],
+            "sude98.html": [
+                "periodic motion", "oscillations", "restoring force", "spring constant"
+            ],
+            "sude99.html": [
+                "electric potential energy", "charged particle", "electric field", "work"
+            ],
+            "sude100.html": [
+                "magnetic flux", "induced emf", "Faraday's law", "electromagnetic induction"
+            ],
+            "sude101.html": [
+                "Faraday's law", "magnetic field", "electric current", "induced emf"
+            ],
+            "sude102.html": [
+                "resistance", "Ohm's law", "resistivity", "conductivity"
+            ],
+            "sude103.html": [
+                "current", "charge", "time", "electrical circuits"
+            ],
+            "sude104.html": [
+                "voltage", "electric current", "energy", "power", "resistance"
+            ],
+            "sude105.html": [
+                "power in electric circuits", "voltage", "current", "resistance"
+            ],
+            "sude106.html": [
+                "relativity", "speed of light", "mass-energy equivalence", "time dilation"
+            ],
+            "sude107.html": [
+                "photoelectric effect", "Einstein", "light", "electron", "quantum theory"
+            ],
+            "sude108.html": [
+                "wave theory", "light", "diffraction", "interference", "Huygens' principle"
+            ],
+            "sude109.html": [
+                "quantum energy", "photon", "Planck's law", "quantum theory"
+            ],
+            "sude110.html": [
+                "Beer's law", "absorption", "light intensity", "concentration"
+            ],
+            "sude111.html": [
+                "radioactive decay", "half-life", "decay constant", "radiation"
+            ],
+            "sude112.html": [
+                "electric field", "electric potential", "work", "force"
+            ],
+            "sude113.html": [
+                "photoelectric effect", "photon energy", "metal surface", "electron emission"
+            ],
+            "sude114.html": [
+                "radioactive decay", "half-life", "decay constant", "nuclear physics"
+            ],
+            "sude115.html": [
+                "conservation of energy", "work-energy theorem", "potential energy"
+            ],
+            "sude116.html": [
+                "magnetic field", "current-carrying wire", "Lorentz force"
+            ],
+            "sude117.html": [
+                "heat transfer", "conduction", "convection", "radiation"
+            ],
+            "sude118.html": [
+                "electromagnetic waves", "speed of light", "frequency", "wavelength"
+            ],
+            "sude119.html": [
+                "sound waves", "frequency", "amplitude", "speed of sound", "acoustics"
+            ],
+            "sude120.html": [
+                "kinetic energy", "work done", "force", "velocity"
+            ],
+            "sude121.html": [
+                "fluid dynamics", "Bernoulli's equation", "pressure", "velocity"
+            ],
+            "sude122.html": [
+                "work-energy theorem", "kinetic energy", "potential energy"
+            ],
+            "sude123.html": [
+                "moment of inertia", "rotational motion", "angular momentum"
+            ],
+            "sude124.html": [
+                "centripetal force", "angular velocity", "radius", "speed of object"
+            ],
+            "sude125.html": [
+                "Newton's second law", "force", "mass", "acceleration"
+            ],
+            "sude126.html": [
+                "gravitational potential energy", "mass", "height", "Earth", "gravitational field"
+            ],
+            "sude127.html": [
+                "Coulomb's law", "electric field", "point charge", "distance"
+            ],
+            "sude128.html": [
+                "gravitational field", "force", "mass", "distance"
+            ],
+            "sude129.html": [
+                "optics", "lens equation", "focal length", "image formation"
+            ],
+            "sude130.html": [
+                "centripetal force", "velocity", "radius", "angular motion"
+            ],
+            "sude131.html": [
+                "Ohm's law", "current", "resistance", "voltage"
+            ],
+            "sude132.html": [
+                "thermal conductivity", "heat transfer", "temperature gradient"
+            ],
+            "sude133.html": [
+                "calorimetry", "heat", "temperature", "specific heat"
+            ],
+            "sude134.html": [
+                "specific heat", "mass", "temperature change", "energy"
+            ],
+            "sude135.html": [
+                "conductivity", "thermal resistance", "heat transfer"
+            ],
+            "sude136.html": [
+                "specific latent heat", "phase change", "temperature", "energy"
+            ],
+            "sude137.html": [
+                "thermodynamics", "entropy", "work", "heat"
+            ],
+            "sude138.html": [
+                "electric power", "resistance", "current", "voltage"
+            ],
+            "sude139.html": [
+                "parallel circuits", "resistance", "current", "voltage"
+            ],
+            "sude140.html": [
+                "series circuits", "resistance", "current", "voltage"
+            ],
+            "sude141.html": [
+                "Lenz's law", "magnetic flux", "induced emf"
+            ],
+            "sude142.html": [
+                "induced emf", "Faraday's law", "magnetic field", "electric current"
+            ],
+            "sude143.html": [
+                "electromagnetic induction", "changing magnetic flux", "current"
+            ],
+            "sude144.html": [
+                "magnetic field strength", "current", "radius", "ampere"
+            ],
+            "sude145.html": [
+                "electromagnetic waves", "frequency", "wavelength", "speed of light"
+            ],
+            "sude146.html": [
+                "optics", "refraction", "lens formula", "magnification"
+            ],
+            "sude147.html": [
+                "energy", "power", "time", "electric circuits"
+            ],
+            "sude148.html": [
+                "resistance", "resistivity", "voltage", "current", "material property"
+            ],
+            "sude149.html": [
+                "nuclear energy", "fusion", "fission", "nuclear power"
+            ],
+            "sude150.html": [
+                "atomic structure", "quantum mechanics", "electrons", "protons", "neutrons"
+            ]
+
         };
 
-        function showSuggestions() {
-            const query = document.getElementById('search-bar').value.toLowerCase();
-            const suggestionList = document.getElementById('suggestion-list');
-            suggestionList.innerHTML = ''; 
-
-            if (query) {
-                Object.keys(keywords).forEach(keyword => {
-                    if (keyword.includes(query)) {
-                        const li = document.createElement('li');
-                        li.textContent = keyword; 
-                        li.onclick = function() {
-                            window.location.href = keywords[keyword]; 
-                        };
-                        suggestionList.appendChild(li);
-                    }
-                });
+        // Search function
+        document.getElementById("search").addEventListener("input", function() {
+            const query = this.value.toLowerCase();
+            let result = '';
+            
+            // Search through the keywords
+            for (const page in keywords) {
+                const keywordsList = keywords[page];
+                const match = keywordsList.some(keyword => keyword.toLowerCase().includes(query));
+                
+                if (match) {
+                    result += `<p><a href="${page}">Go to ${page}</a></p>`;
+                }
             }
-        }
-    </script>
 
+            // Display result
+            document.getElementById("result").innerHTML = result || "No results found.";
+        });
+    </script>
 </body>
 </html>
