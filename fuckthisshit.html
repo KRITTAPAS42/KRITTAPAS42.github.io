@@ -1,0 +1,2703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physics Formulas Lite</title>
+  <style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+/* Left Sidebar */
+#sidebar {
+  width: 25%;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-y: scroll;
+  padding-top: 2.5%;
+  padding-bottom: 2.5%; /* To make space below the search bar */
+}
+
+/* Search Input */
+#searchInput {
+  width: 90%;
+  padding: 2.5%;
+  font-size: 16px;
+  margin: 0 auto 15px;
+  border: none;
+  border-radius: 5px;
+  background-color: #82909e;
+  color: white;
+  box-sizing: border-box;
+  display: block;
+}
+
+/* Big Chapter Titles */
+.big-chapter {
+  font-size: 20px;
+  padding: 10px;
+  cursor: pointer;
+  background-color: #34495e;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for chapters */
+.big-chapter:hover {
+  background-color: #1abc9c;
+}
+
+/* Chapter List */
+.chapter-list {
+  display: none;
+  padding-left: 10px;
+}
+
+/* Individual Chapter Items */
+.chapter {
+  font-size: 16px;
+  padding: 8px;
+  cursor: pointer;
+  background-color: #2c3e50;
+  margin: 5px 0;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+/* Hover effect for chapters */
+.chapter:hover {
+  background-color: #1abc9c;
+}
+
+/* Right Content Area */
+/* Remove margin and padding from content */
+#content {
+  margin-left: 25%; /* Ensure content doesn't go under sidebar */
+  padding: 2.5%;
+  overflow-y: auto;
+  height: 100vh;
+  width: calc(80% - 0%);
+  background-color: #f4f4f9; /* Optional: Can match your body background color */
+}
+
+
+/* Formula Box */
+.formula-box {
+  display: block;
+  margin-bottom: 2.5%;
+  padding: 15px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Hover effect for formula boxes */
+.formula-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#content {
+  font-size: 18px;
+}
+
+/* Optional: Animating Chapter List */
+.chapter-list.show {
+  display: block;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <div id="sidebar">
+
+    <input type="text" id="searchInput" onkeyup="searchChapters()" placeholder="Search for chapters...">
+
+    <!-- Mechanics Section -->
+    <div class="big-chapter" onclick="toggleChapterList('mechanics')">Mechanics</div>
+    <div id="mechanics" class="chapter-list">
+      <div class="chapter"onclick="showContent('straight-line-motion')">Straight Line Motion</div>
+      <div class="chapter"onclick="showContent('constant-acceleration')">Constant Acceleration Straight Line Motion</div>
+      <div class="chapter"onclick="showContent('distance-function')">Distance Function</div>
+      <div class="chapter"onclick="showContent('uniform-circular-motion')">Uniform Circular Motion</div>
+      <div class="chapter"onclick="showContent('centripetal-force')">Centripetal Force</div>
+      <div class="chapter"onclick="showContent('constant-acceleration-circular')">Constant Acceleration Circular Motion</div>
+      <div class="chapter"onclick="showContent('work-energy-principle')">Work-energy Principle</div>
+      <div class="chapter"onclick="showContent('potential-energy')">Potential Energy</div>
+      <div class="chapter"onclick="showContent('conservation-of-mechanical-energy')">Conservation Of Mechanical Energy</div>
+      <div class="chapter"onclick="showContent('conservation-of-energy')">Conservation Of Energy</div>
+      <div class="chapter"onclick="showContent('density-pressure')">Density Pressure</div>
+      <div class="chapter"onclick="showContent('pressure-of-liquids')">Pressure Of Liquids</div>
+      <div class="chapter"onclick="showContent('pascal-principle')">Pascal's Principle</div>
+      <div class="chapter"onclick="showContent('archimedes-principle')">Archimedes' Principle</div>
+      <div class="chapter"onclick="showContent('flow-rate')">Flow Rate</div>
+      <div class="chapter"onclick="showContent('application')">Application</div>
+      <div class="chapter"onclick="showContent('acceleration')">Acceleration</div>
+      <div class="chapter"onclick="showContent('free-falling-from-height-h')">Free Falling From Height H</div>
+      <div class="chapter"onclick="showContent('vertical-projectile-motion')">Vertical Projectile Motion</div>
+      <div class="chapter"onclick="showContent('angled-projectile-motion')">Angled Projectile Motion</div>
+      <div class="chapter"onclick="showContent('horizontal-projectile-motion')">Horizontal Projectile Motion</div>
+      <div class="chapter"onclick="showContent('sliding-motion-on-inclined-plane')">Sliding Motion On An Inclined Plane</div>
+      <div class="chapter"onclick="showContent('attractive-force)">Attractive Force</div>
+      <div class="chapter"onclick="showContent('gravitational-force')">Gravitational Force</div>
+      <div class="chapter"onclick="showContent('gravitational-acceleration')">Gravitational Acceleration</div>
+      <div class="chapter"onclick="showContent('force-of-friction')">Force Of Friction</div>
+      <div class="chapter"onclick="showContent('moment-of-a-force')">Moment Of A Force</div>
+      <div class="chapter"onclick="showContent('moment-application')">Moment Application</div>
+      <div class="chapter"onclick="showContent('moment-of-inertia')">Moment Of Inertia</div>
+      <div class="chapter"onclick="showContent('angular-momentum')">Angular Momentum</div>
+      <div class="chapter"onclick="showContent('moment-of-a-force')">Momentum Of Force</div>
+      <div class="chapter"onclick="showContent('law-of-conservation-of-momentum')">Law Of Conservation Of Momentum</div>
+      <div class="chapter"onclick="showContent('plastic-collision')">Plastic Collision</div>
+      <div class="chapter"onclick="showContent('one-dimensional-elastic-collision')">One-dimensional Elastic Collision</div>
+      <div class="chapter"onclick="showContent('work')">Work</div>
+      <div class="chapter"onclick="showContent('examples')">Examples</div>
+      <div class="chapter"onclick="showContent('power')">Power</div>
+      <div class="chapter"onclick="showContent('kinetic-energy')">Kinetic Energy</div>
+      <div class="chapter"onclick="showContent('kinetic-energy-massive-rotating-body')">Kinetic Energy Of A Massive Rotating Body</div>
+      <div class="chapter"onclick="showContent('work-energy-principle')">Work-energy Principle</div>
+      <div class="chapter"onclick="showContent('potential-energy')">Potential Energy</div>
+      <div class="chapter"onclick="showContent('conservation-of-mechanical-energy')">Conservation Of Mechanical Energy</div>
+      <div class="chapter"onclick="showContent('conservation-of-energy')">Conservation Of Energy</div>
+      <div class="chapter"onclick="showContent('density-pressure')">Density Pressure</div>
+      <div class="chapter"onclick="showContent('pressure-of-liquids')">Pressure Of Liquids</div>
+      <div class="chapter"onclick="showContent('pascal-principle')">Pascal's Principle</div>
+      <div class="chapter"onclick="showContent('archimedes-principle')">Archimedes' Principle</div>
+      <div class="chapter"onclick="showContent('flow-rate')">Flow Rate</div>
+      <div class="chapter"onclick="showContent('application')">Application</div>
+    </div>
+
+    <!-- Electricity Section -->
+    <div class="big-chapter" onclick="toggleChapterList('electricity')">Electricity</div>
+    <div id="electricity" class="chapter-list">
+      <div class="chapter"onclick="showContent('coulombs-law')">Coulomb's Law</div>
+      <div class="chapter"onclick="showContent('electric-fields')">Electric Fields</div>
+      <div class="chapter"onclick="showContent('principle-of-superposition-for-electric-fields')">The Principle Of Superposition For Electric Fields</div>
+      <div class="chapter"onclick="showContent('work-of-electric-force')">Work Of Electric Force</div>
+      <div class="chapter"onclick="showContent('electric-potential-difference')">Electric Potential Difference</div>
+      <div class="chapter"onclick="showContent('relation-between-e-and-u')">Relation Between E And U</div>
+      <div class="chapter"onclick="showContent('capacitance')">Capacitance</div>
+      <div class="chapter"onclick="showContent('capacitor')">Capacitor</div>
+      <div class="chapter"onclick="showContent('capacitances-in-series')">Capacitances In Series</div>
+      <div class="chapter"onclick="showContent('capacitances-in-parallel')">Capacitances In Parallel</div>
+      <div class="chapter"onclick="showContent('electric-field-energy')">Electric Field Energy</div>
+      <div class="chapter"onclick="showContent('energy-of-capacitor')">Energy Of Capacitor</div>
+      <div class="chapter"onclick="showContent('electric-current')">Electric Current</div>
+      <div class="chapter"onclick="showContent('ohms-law')">Ohm's Law</div>
+      <div class="chapter"onclick="showContent('work-created-by-a-current')">Work Created By A Current (Joule's Law)</div>
+      <div class="chapter"onclick="showContent('electrical-power')">Electrical Power</div>
+      <div class="chapter"onclick="showContent('resistance')">Resistance</div>
+      <div class="chapter"onclick="showContent('series-circuits')">Series Circuits</div>
+      <div class="chapter"onclick="showContent('parallel-circuits')">Parallel Circuits</div>
+      <div class="chapter"onclick="showContent('work-or-heat-energy-produced-by-a-resistor')">Work Or Heat Energy Produced By A Resistor</div>
+      <div class="chapter"onclick="showContent('power-consumption-of-a-resistor')">Power Consumption Of A Resistor</div>
+      <div class="chapter"onclick="showContent('electromotive-force-of-an-electrical-generator')">Electromotive Force Of An Electrical Generator</div>
+      <div class="chapter"onclick="showContent('generators-in-series')">Generators In Series</div>
+      <div class="chapter"onclick="showContent('generators-in-parallel')">Generators In Parallel</div>
+      <div class="chapter"onclick="showContent('generators-in-series-parallel')">Generators In Series-parallel</div>
+      <div class="chapter"onclick="showContent('work-and-power-of-generator')">Work And Power Of Generator</div>
+      <div class="chapter"onclick="showContent('magnetic-flux-through-the-open-surface')">Magnetic Flux Through The Open Surface S</div>
+      <div class="chapter"onclick="showContent('magnetic-forces-on-moving-charges')">Magnetic Forces On Moving Charges</div>
+      <div class="chapter"onclick="showContent('force-on-a-current-carrying-wire')">Force On A Current-carrying Wire</div>
+      <div class="chapter"onclick="showContent('force-between-2-parallel-current-carrying-wires')">Force Between 2 Parallel Current-carrying Wires</div>
+      <div class="chapter"onclick="showContent('magnetic-field-of-a-long-current-charge-wire')">Magnetic Field Of A Long Current charge Wire</div>
+      <div class="chapter"onclick="showContent('magnetic-field-of-a-loop')">Magnetic Field Of A Loop</div>
+      <div class="chapter"onclick="showContent('induced-electromotive-force-faradays-law')">Induced Electromotive Force Faraday's Law</div>
+      <div class="chapter"onclick="showContent('inductance')">Inductance</div>
+      <div class="chapter"onclick="showContent('electric-energy')">Electric Energy</div>
+      <div class="chapter"onclick="showContent('electric-magnetic-energy')">Electric-magnetic Energy</div>
+      <div class="chapter"onclick="showContent('basic-parameters')">Basic Parameters</div>
+      <div class="chapter"onclick="showContent('effective-current-and-voltage')">Effective Current And Voltage</div>
+      <div class="chapter"onclick="showContent('ohms-law-of-ac-current-containing-only-resistance-r')">Ohm's Law Of Ac Current Containing Only Resistance R</div>
+      <div class="chapter"onclick="showContent('ohms-law-of-ac-current-containing-only-inductor-l')">Containing Only Inductor L</div>
+      <div class="chapter"onclick="showContent('ohms-law-of-ac-current-containing-only-capacitor-c')">Containing Only Capacitor C</div>
+      <div class="chapter"onclick="showContent('ohms-law-of-ac-current-containing-r-l-c-in-series')">Containing R, L And C In A Series</div>
+      <div class="chapter"onclick="showContent('phase-angle')">Phase Angle</div>
+      <div class="chapter"onclick="showContent('power-factor')">Power Factor</div>
+      <div class="chapter"onclick="showContent('real-power')">Real Power</div>
+      <div class="chapter"onclick="showContent('electrical-resonance')">Electrical Resonance</div>
+      <div class="chapter"onclick="showContent('changing-voltage-with-transformers')">Changing Voltage With Transformers</div>
+    </div>
+
+    <!-- Thermal Physics Section -->
+    <div class="big-chapter" onclick="toggleChapterList('thermal-physics')">Thermal Physics</div>
+    <div id="thermal-physics" class="chapter-list">
+      <div class="chapter"onclick="showContent('kelvin-temperature')">Kelvin Temperature</div>
+      <div class="chapter"onclick="showContent('equation-of-state')">Equation Of State</div>
+      <div class="chapter"onclick="showContent('ideal-gas-law')">Ideal Gas Law</div>
+      <div class="chapter"onclick="showContent('boyles-law-for-pressure')">Boyle's Law For Pressure</div>
+      <div class="chapter"onclick="showContent('gay-lussacs-law-of-pressure-temperature')">Gay-Lussac's Law Of Pressure-Temperature</div>
+      <div class="chapter"onclick="showContent('charless-law-of-volumes')">Charles's Law Of Volumes</div>
+      <div class="chapter"onclick="showContent('heat')">Heat</div>
+      <div class="chapter"onclick="showContent('fusion-freezing-or-solidification')">Fusion (freezing or solidification)</div>
+      <div class="chapter"onclick="showContent('vaporization')">Vaporization</div>
+      <div class="chapter"onclick="showContent('linear-expansion')">Linear Expansion</div>
+      <div class="chapter"onclick="showContent('volume-expansion')">Volume Expansion</div>
+      <div class="chapter"onclick="showContent('area-expansion')">Area Expansion</div>
+      <div class="chapter"onclick="showContent('change-of-density')">Change Of Density (volumetric mass density)</div>
+      <div class="chapter"onclick="showContent('change-of-diameter-of-the-cross-section-of-a-solid')">Change Of Diameter Of The Cross Section Of A Solid</div>
+      <div class="chapter"onclick="showContent('the-first-law-of-thermodynamics')">The First Law Of Thermodynamics</div>
+      <div class="chapter"onclick="showContent('application-of-first-law-to-ideal-gas-laws')">Application Of First Law To Ideal Gas Laws</div>
+      <div class="chapter"onclick="showContent('the-second-law-of-thermodynamics')">The Second Law Of Thermodynamics</div>
+    </div>
+
+    <!-- Periodic Motion Section -->
+    <div class="big-chapter" onclick="toggleChapterList('periodic-motion')">Periodic Motion</div>
+    <div id="periodic-motion" class="chapter-list">
+      <div class="chapter"onclick="showContent('spring')">Spring</div>
+      <div class="chapter"onclick="showContent('springs-in-series')">Springs In Series</div>
+      <div class="chapter"onclick="showContent('springs-in-parallel')">Springs In Parallel</div>
+      <div class="chapter"onclick="showContent('simple-pendulum')">Simple Pendulum</div>
+      <div class="chapter"onclick="showContent('motion-equations')">Motion Equations</div>
+      <div class="chapter"onclick="showContent('Energy')">Energy</div>
+      <div class="chapter"onclick="showContent('change-of-period-following-the-change-of-the-temperature')">Change Of Period Following The Change Of The Temperature</div>
+      <div class="chapter"onclick="showContent('change-of-period-following-the-change-of-the-height')">Change Of Period Following The Change Of The Height</div>
+      <div class="chapter"onclick="showContent('pendulum')">Pendulum</div>
+      <div class="chapter"onclick="showContent('wavelength')">Wavelength</div>
+      <div class="chapter"onclick="showContent('function-of-wave-at-some-points')">Function Of Wave At Some Points</div>
+      <div class="chapter"onclick="showContent('wave-interference')">Wave Interference</div>
+      <div class="chapter"onclick="showContent('sound-speed')">Sound Speed</div>
+      <div class="chapter"onclick="showContent('sound-intensity')">Sound Intensity</div>
+      <div class="chapter"onclick="showContent('sound-intensity-level')">Sound Intensity Level</div>
+      <div class="chapter"onclick="showContent('doppler-effect')">The Doppler Effect</div>
+      <div class="chapter"onclick="showContent('sound-speed-in-gases')">Sound Speed In Gases</div>
+    </div>
+
+    <!-- Optics Section -->
+    <div class="big-chapter" onclick="toggleChapterList('optics')">Optics</div>
+    <div id="optics" class="chapter-list">
+      <div class="chapter"onclick="showContent('laws-of-reflection')">Laws Of Reflection</div>
+      <div class="chapter"onclick="showContent('refractive-index')">Refractive Index</div>
+      <div class="chapter"onclick="showContent('laws-of-reflection')">Law Of Refraction</div>
+      <div class="chapter"onclick="showContent('total-reflection-phenomenon')">Total Reflection Phenomenon</div>
+      <div class="chapter"onclick="showContent('prism')">Prism</div>
+      <div class="chapter"onclick="showContent('thin-lens')">Thin Lens</div>
+      <div class="chapter"onclick="showContent('magnification-factor')">Magnification Factor</div>
+      <div class="chapter"onclick="showContent('power-of-the-lens')">Power Of The Lens</div>
+      <div class="chapter"onclick="showContent('photon-energy')">Photon Energy</div>
+      <div class="chapter"onclick="showContent('condition-to-have-photoelectric-effect')">Condition To Have Photoelectric Effect</div>
+      <div class="chapter"onclick="showContent('einsteins-equation-about-photoelectric-effect')">Einstein's Equation About Photoelectric Effect</div>
+    </div>
+
+    <!-- Atomic Physics Section -->
+    <div class="big-chapter" onclick="toggleChapterList('atomic-physics')">Atomic Physics</div>
+    <div id="atomic-physics" class="chapter-list">
+      <div class="chapter"onclick="showContent('mass-energy-equivalence')">Mass-energy Equivalence</div>
+      <div class="chapter"onclick="showContent('length-contraction')">Length Contraction</div>
+      <div class="chapter"onclick="showContent('relativistic-mass')">Relativistic Mass</div>
+      <div class="chapter"onclick="showContent('time-dilation')">Time Dilation</div>
+      <div class="chapter"onclick="showContent('nuclear-reaction')">Nuclear Reaction</div>
+      <div class="chapter"onclick="showContent('radioactive-decay')">Radioactive Decay</div>
+      <div class="chapter"onclick="showContent('amount-of-radioactivity')">Amount Of Radioactivity</div>
+      <div class="chapter"onclick="showContent('nuclear-makeup')">Nuclear Makeup</div>
+    </div>
+
+    <!-- Constants Section -->
+    <div class="big-chapter" onclick="toggleChapterList('constants')">Constants</div>
+    <div id="constants" class="chapter-list">
+      <div class="chapter"onclick="showContent('alpha-particle-mass')">Alpha Particle Mass</div>
+      <div class="chapter"onclick="showContent('atomic-mass-constant')">Atomic Mass Constant</div>
+      <div class="chapter"onclick="showContent('atomic-unit-of-energy')">Atomic Unit Of Energy</div>
+      <div class="chapter"onclick="showContent('atomic-unit-of-force')">Atomic Unit Of Force</div>
+      <div class="chapter"onclick="showContent('atomic-unit-of-length')">Atomic Unit Of Length</div>
+      <div class="chapter"onclick="showContent('atomic-unit-of-mass')">Atomic Unit Of Mass</div>
+      <div class="chapter"onclick="showContent('avogadros-constant')">Avogadro's Constant</div>
+      <div class="chapter"onclick="showContent('bohr-radius')">Bohr Radius</div>
+      <div class="chapter"onclick="showContent('boltzmann-constant')">Boltzmann Constant</div>
+      <div class="chapter"onclick="showContent('classical-electron-radius')">Classical Electron Radius</div>
+      <div class="chapter"onclick="showContent('elementary-charge')">Elementary Charge</div>
+      <div class="chapter"onclick="showContent('earth-mass')">Earth Mass</div>
+      <div class="chapter"onclick="showContent('earth-equatorial-radius')">Earth Equatorial Radius</div>
+      <div class="chapter"onclick="showContent('earth-equatorial-radius')">Earth Mean Orbital Velocity</div>
+      <div class="chapter"onclick="showContent('earth-rotational-angular-velocity')">Earth Rotational Angular Velocity</div>
+      <div class="chapter"onclick="showContent('faradays-constant')">Faraday's Constant</div>
+      <div class="chapter"onclick="showContent('gas-constant')">Gas Constant</div>
+      <div class="chapter"onclick="showContent('molar-mass-constant')">Molar Mass Constant</div>
+      <div class="chapter"onclick="showContent('molar-volume-ideal-gas')">Molar Volume Of Ideal Gas</div>
+      <div class="chapter"onclick="showContent('neutron-mass')">Neutron Mass</div>
+      <div class="chapter"onclick="showContent('newtonian-constant-gravitation')">Newtonian Constant Of Gravitation</div>
+      <div class="chapter"onclick="showContent('plancks-constant')">Planck's Constant</div>
+      <div class="chapter"onclick="showContent('planck-mass')">Planck Mass</div>
+      <div class="chapter"onclick="showContent('proton-mass')">Proton Mass</div>
+      <div class="chapter"onclick="showContent('proton-electron-mass-ratio')">Proton-electron Mass Ratio</div>
+      <div class="chapter"onclick="showContent('speed-of-light-in-vacuum')">Speed Of Light In Vacuum</div>
+      <div class="chapter"onclick="showContent('standard-acceleration-of-gravity')">Standard Acceleration Of Gravity</div>
+      <div class="chapter"onclick="showContent('standard-atmosphere')">Standard Atmosphere</div>
+      <div class="chapter"onclick="showContent('standard-reference-sound-intensity')">Standard Reference Sound Intensity</div>
+      <div class="chapter"onclick="showContent('stefan-boltzmann-constant')">Stefan-boltzmann Constant</div>
+    </div>
+
+  </div>
+
+  
+
+  <div id="content">
+
+    <div id="straight-line-motion" class="formula-box" >
+      <h3>Straight Line Motion</h3>
+      <div class="variables">
+        <strong>displacement (s)</strong> - m<br>
+        <strong>initial velocity (u)</strong> - m/s<br>
+        <strong>final velocity (v)</strong> - m/s<br>
+        <strong>acceleration (a)</strong> - m/s²<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>v = s / t</strong><br>
+        <strong>v = u + at</strong><br>
+        <strong>v² = u² + 2as</strong><br>
+        <strong>s = (u + v)t / 2</strong><br>
+        <strong>s = ut + 1/2 a t²</strong><br>
+        <strong>s = vt - 1/2 a t²</strong>
+      </div>
+    </div>
+    
+    <div id="constant-acceleration" class="formula-box" >
+      <h3>Constant Acceleration Straight Line Motion</h3>
+      <div class="variables">
+        <strong>acceleration (a)</strong> - m/s²<br>
+        <strong>initial velocity (u)</strong> - m/s<br>
+        <strong>final velocity (v)</strong> - m/s<br>
+        <strong>time (t)</strong> - s<br>
+        <strong>displacement (s)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>v = u + at</strong><br>
+        <strong>s = ut + 1/2 a t²</strong><br>
+        <strong>s = (v² - u²) / 2a</strong><br>
+        <strong>a = (v - u) / t</strong>
+      </div>
+    </div>
+    
+    <div id="distance-function" class="formula-box" >
+      <h3>Distance Function</h3>
+      <div class="variables">
+        <strong>distance (d)</strong> - m<br>
+        <strong>speed (v)</strong> - m/s<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>d = vt</strong>
+      </div>
+    </div>
+    
+    <div id="uniform-circular-motion" class="formula-box" >
+      <h3>Uniform Circular Motion</h3>
+      <div class="variables">
+        <strong>angular velocity (ω)</strong> - rad/s<br>
+        <strong>radius (r)</strong> - m<br>
+        <strong>speed (v)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>v = rω</strong><br>
+        <strong>a_c = v² / r</strong><br>
+        <strong>T = 2πr / v</strong>
+      </div>
+    </div>
+    
+    <div id="centripetal-force" class="formula-box" >
+      <h3>Centripetal Force</h3>
+      <div class="variables">
+        <strong>centripetal force (F_c)</strong> - N<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>speed (v)</strong> - m/s<br>
+        <strong>radius (r)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>F_c = mv² / r</strong>
+      </div>
+    </div>
+    
+    <div id="constant-acceleration-circular" class="formula-box" >
+      <h3>Constant Acceleration Circular Motion</h3>
+      <div class="variables">
+        <strong>angular velocity (ω)</strong> - rad/s<br>
+        <strong>angular acceleration (α)</strong> - rad/s²<br>
+        <strong>radius (r)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>ω = ω₀ + αt</strong><br>
+        <strong>θ = ω₀t + 1/2 αt²</strong>
+      </div>
+    </div>
+    
+    <div id="work-energy-principle" class="formula-box" >
+      <h3>Work-energy Principle</h3>
+      <div class="variables">
+        <strong>work (W)</strong> - J<br>
+        <strong>force (F)</strong> - N<br>
+        <strong>distance (d)</strong> - m<br>
+        <strong>kinetic energy (KE)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>W = F × d</strong><br>
+        <strong>KE = 1/2 mv²</strong>
+      </div>
+    </div>
+    
+    <div id="potential-energy" class="formula-box" >
+      <h3>Potential Energy</h3>
+      <div class="variables">
+        <strong>potential energy (PE)</strong> - J<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>gravitational field (g)</strong> - m/s²<br>
+        <strong>height (h)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>PE = mgh</strong>
+      </div>
+    </div>
+    
+    <div id="conservation-of-mechanical-energy" class="formula-box" >
+      <h3>Conservation of Mechanical Energy</h3>
+      <div class="variables">
+        <strong>mechanical energy (E)</strong> - J<br>
+        <strong>kinetic energy (KE)</strong> - J<br>
+        <strong>potential energy (PE)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>KE + PE = constant</strong>
+      </div>
+    </div>
+    
+    <div id="conservation-of-energy" class="formula-box" >
+      <h3>Conservation of Energy</h3>
+      <div class="variables">
+        <strong>energy (E)</strong> - J<br>
+        <strong>work (W)</strong> - J<br>
+        <strong>heat (Q)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>ΔE = W + Q</strong>
+      </div>
+    </div>
+    
+    <div id="density-pressure" class="formula-box" >
+      <h3>Density and Pressure</h3>
+      <div class="variables">
+        <strong>density (ρ)</strong> - kg/m³<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>volume (V)</strong> - m³<br>
+        <strong>pressure (P)</strong> - Pa
+      </div>
+      <div class="formula">
+        <strong>ρ = m / V</strong><br>
+        <strong>P = F / A</strong>
+      </div>
+    </div>
+    
+    <div id="pressure-of-liquids" class="formula-box" >
+      <h3>Pressure of Liquids</h3>
+      <div class="variables">
+        <strong>pressure (P)</strong> - Pa<br>
+        <strong>density (ρ)</strong> - kg/m³<br>
+        <strong>gravitational field (g)</strong> - m/s²<br>
+        <strong>height (h)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>P = ρgh</strong>
+      </div>
+    </div>
+    
+    <div id="pascal-principle" class="formula-box" >
+      <h3>Pascal's Principle</h3>
+      <div class="variables">
+        <strong>pressure (P)</strong> - Pa<br>
+        <strong>force (F)</strong> - N<br>
+        <strong>area (A)</strong> - m²
+      </div>
+      <div class="formula">
+        <strong>F₁ / A₁ = F₂ / A₂</strong>
+      </div>
+    </div>
+    
+    <div id="archimedes-principle" class="formula-box" >
+      <h3>Archimedes' Principle</h3>
+      <div class="variables">
+        <strong>buoyant force (F_b)</strong> - N<br>
+        <strong>fluid density (ρ)</strong> - kg/m³<br>
+        <strong>gravitational field (g)</strong> - m/s²<br>
+        <strong>displaced volume (V)</strong> - m³
+      </div>
+      <div class="formula">
+        <strong>F_b = ρgV</strong>
+      </div>
+    </div>
+    
+    <div id="flow-rate" class="formula-box" >
+      <h3>Flow Rate</h3>
+      <div class="variables">
+        <strong>flow rate (Q)</strong> - m³/s<br>
+        <strong>velocity (v)</strong> - m/s<br>
+        <strong>area (A)</strong> - m²
+      </div>
+      <div class="formula">
+        <strong>Q = vA</strong>
+      </div>
+    </div>
+    
+    <div id="application" class="formula-box" >
+      <h3>Application</h3>
+      <div class="variables">
+        <strong>force (F)</strong> - N<br>
+        <strong>distance (d)</strong> - m<br>
+        <strong>energy (E)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>F = ma</strong><br>
+        <strong>W = F × d</strong>
+      </div>
+    </div>
+
+    <div id="acceleration" class="formula-box" >
+      <h3>Acceleration</h3>
+      <div class="variables">
+        <strong>acceleration (a)</strong> - m/s²<br>
+        <strong>initial velocity (u)</strong> - m/s<br>
+        <strong>final velocity (v)</strong> - m/s<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>a = (v - u) / t</strong><br>
+        <strong>v = u + at</strong>
+      </div>
+    </div>
+    
+    <div id="free-falling-from-height-h" class="formula-box" >
+      <h3>Free Falling From Height H</h3>
+      <div class="variables">
+        <strong>displacement (s)</strong> - m<br>
+        <strong>initial velocity (u)</strong> - m/s<br>
+        <strong>final velocity (v)</strong> - m/s<br>
+        <strong>acceleration (g)</strong> - m/s²<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>v = u + gt</strong><br>
+        <strong>s = ut + 1/2 g t²</strong><br>
+        <strong>v² = u² + 2gs</strong>
+      </div>
+    </div>
+    
+    <div id="vertical-projectile-motion" class="formula-box" >
+      <h3>Vertical Projectile Motion</h3>
+      <div class="variables">
+        <strong>initial velocity (u)</strong> - m/s<br>
+        <strong>final velocity (v)</strong> - m/s<br>
+        <strong>acceleration (g)</strong> - m/s²<br>
+        <strong>displacement (s)</strong> - m<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>v = u + gt</strong><br>
+        <strong>s = ut + 1/2 g t²</strong><br>
+        <strong>v² = u² + 2gs</strong>
+      </div>
+    </div>
+    
+    <div id="angled-projectile-motion" class="formula-box" >
+      <h3>Angled Projectile Motion</h3>
+      <div class="variables">
+        <strong>initial velocity (u)</strong> - m/s<br>
+        <strong>angle (θ)</strong> - degrees<br>
+        <strong>time (t)</strong> - s<br>
+        <strong>displacement (x, y)</strong> - m<br>
+        <strong>acceleration (g)</strong> - m/s²
+      </div>
+      <div class="formula">
+        <strong>vx = u cos(θ)</strong><br>
+        <strong>vy = u sin(θ) - gt</strong><br>
+        <strong>x = u cos(θ) t</strong><br>
+        <strong>y = u sin(θ) t - 1/2 g t²</strong><br>
+        <strong>t = 2u sin(θ) / g</strong>
+      </div>
+    </div>
+    
+    <div id="horizontal-projectile-motion" class="formula-box" >
+      <h3>Horizontal Projectile Motion</h3>
+      <div class="variables">
+        <strong>initial velocity (u)</strong> - m/s<br>
+        <strong>time (t)</strong> - s<br>
+        <strong>displacement (x)</strong> - m<br>
+        <strong>acceleration (g)</strong> - m/s²
+      </div>
+      <div class="formula">
+        <strong>x = u t</strong><br>
+        <strong>y = 1/2 g t²</strong>
+      </div>
+    </div>
+    
+    <div id="sliding-motion-on-inclined-plane" class="formula-box" >
+      <h3>Sliding Motion On An Inclined Plane</h3>
+      <div class="variables">
+        <strong>acceleration (a)</strong> - m/s²<br>
+        <strong>gravitational acceleration (g)</strong> - m/s²<br>
+        <strong>angle (θ)</strong> - degrees
+      </div>
+      <div class="formula">
+        <strong>a = g sin(θ)</strong>
+      </div>
+    </div>
+    
+    <div id="attractive-force" class="formula-box" >
+      <h3>Attractive Force</h3>
+      <div class="variables">
+        <strong>force (F)</strong> - N<br>
+        <strong>mass 1 (m₁)</strong> - kg<br>
+        <strong>mass 2 (m₂)</strong> - kg<br>
+        <strong>distance (r)</strong> - m<br>
+        <strong>gravitational constant (G)</strong> - N·m²/kg²
+      </div>
+      <div class="formula">
+        <strong>F = G m₁ m₂ / r²</strong>
+      </div>
+    </div>
+    
+    <div id="gravitational-force" class="formula-box" >
+      <h3>Gravitational Force</h3>
+      <div class="variables">
+        <strong>gravitational force (F)</strong> - N<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>gravitational acceleration (g)</strong> - m/s²
+      </div>
+      <div class="formula">
+        <strong>F = mg</strong>
+      </div>
+    </div>
+    
+    <div id="gravitational-acceleration" class="formula-box" >
+      <h3>Gravitational Acceleration</h3>
+      <div class="variables">
+        <strong>gravitational acceleration (g)</strong> - m/s²
+      </div>
+      <div class="formula">
+        <strong>g = 9.8 m/s²</strong>
+      </div>
+    </div>
+    
+    <div id="force-of-friction" class="formula-box" >
+      <h3>Force of Friction</h3>
+      <div class="variables">
+        <strong>frictional force (f)</strong> - N<br>
+        <strong>normal force (N)</strong> - N<br>
+        <strong>coefficient of friction (μ)</strong> - unitless
+      </div>
+      <div class="formula">
+        <strong>f = μN</strong>
+      </div>
+    </div>
+    
+    <div id="moment-of-a-force" class="formula-box" >
+      <h3>Moment of a Force</h3>
+      <div class="variables">
+        <strong>moment (M)</strong> - N·m<br>
+        <strong>force (F)</strong> - N<br>
+        <strong>distance (d)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>M = F × d</strong>
+      </div>
+    </div>
+    
+    <div id="moment-application" class="formula-box" >
+      <h3>Moment Application</h3>
+      <div class="variables">
+        <strong>moment (M)</strong> - N·m<br>
+        <strong>force (F)</strong> - N<br>
+        <strong>distance (d)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>M = F × d</strong>
+      </div>
+    </div>
+    
+    <div id="moment-of-inertia" class="formula-box" >
+      <h3>Moment of Inertia</h3>
+      <div class="variables">
+        <strong>moment of inertia (I)</strong> - kg·m²<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>radius (r)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>I = Σmᵢ rᵢ²</strong>
+      </div>
+    </div>
+    
+    <div id="angular-momentum" class="formula-box" >
+      <h3>Angular Momentum</h3>
+      <div class="variables">
+        <strong>angular momentum (L)</strong> - kg·m²/s<br>
+        <strong>moment of inertia (I)</strong> - kg·m²<br>
+        <strong>angular velocity (ω)</strong> - rad/s
+      </div>
+      <div class="formula">
+        <strong>L = Iω</strong>
+      </div>
+    </div>
+    
+    <div id="momentum-of-force" class="formula-box" >
+      <h3>Momentum of Force</h3>
+      <div class="variables">
+        <strong>momentum (p)</strong> - kg·m/s<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>velocity (v)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>p = mv</strong>
+      </div>
+    </div>
+    
+    <div id="law-of-conservation-of-momentum" class="formula-box" >
+      <h3>Law of Conservation of Momentum</h3>
+      <div class="variables">
+        <strong>initial momentum (p₁)</strong> - kg·m/s<br>
+        <strong>final momentum (p₂)</strong> - kg·m/s
+      </div>
+      <div class="formula">
+        <strong>p₁ = p₂</strong>
+      </div>
+    </div>
+    
+    <div id="plastic-collision" class="formula-box" >
+      <h3>Plastic Collision</h3>
+      <div class="variables">
+        <strong>initial velocity (u₁, u₂)</strong> - m/s<br>
+        <strong>final velocity (v₁, v₂)</strong> - m/s<br>
+        <strong>mass (m₁, m₂)</strong> - kg
+      </div>
+      <div class="formula">
+        <strong>m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂</strong>
+      </div>
+    </div>
+    
+    <div id="one-dimensional-elastic-collision" class="formula-box" >
+      <h3>One-dimensional Elastic Collision</h3>
+      <div class="variables">
+        <strong>initial velocity (u₁, u₂)</strong> - m/s<br>
+        <strong>final velocity (v₁, v₂)</strong> - m/s<br>
+        <strong>mass (m₁, m₂)</strong> - kg
+      </div>
+      <div class="formula">
+        <strong>m₁u₁ + m₂u₂ = m₁v₁ + m₂v₂</strong><br>
+        <strong>KE₁ + KE₂ = KE₁' + KE₂'</strong>
+      </div>
+    </div>
+    
+    <div id="work" class="formula-box" >
+      <h3>Work</h3>
+      <div class="variables">
+        <strong>work (W)</strong> - J<br>
+        <strong>force (F)</strong> - N<br>
+        <strong>displacement (d)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>W = F × d</strong>
+      </div>
+    </div>
+    
+    <div id="examples" class="formula-box" >
+      <h3>Examples</h3>
+      <div class="variables">
+        <strong>examples</strong> - Various Units
+      </div>
+      <div class="formula">
+        <strong>Various formulas</strong>
+      </div>
+    </div>
+    
+    <div id="power" class="formula-box" >
+      <h3>Power</h3>
+      <div class="variables">
+        <strong>power (P)</strong> - W<br>
+        <strong>work (W)</strong> - J<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>P = W / t</strong>
+      </div>
+    </div>
+    
+    <div id="kinetic-energy" class="formula-box" >
+      <h3>Kinetic Energy</h3>
+      <div class="variables">
+        <strong>kinetic energy (KE)</strong> - J<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>velocity (v)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>KE = 1/2 mv²</strong>
+      </div>
+    </div>
+    
+    <div id="kinetic-energy-massive-rotating-body" class="formula-box" >
+      <h3>Kinetic Energy of a Massive Rotating Body</h3>
+      <div class="variables">
+        <strong>kinetic energy (KE)</strong> - J<br>
+        <strong>moment of inertia (I)</strong> - kg·m²<br>
+        <strong>angular velocity (ω)</strong> - rad/s
+      </div>
+      <div class="formula">
+        <strong>KE = 1/2 I ω²</strong>
+      </div>
+    </div>
+    
+    <div id="work-energy-principle" class="formula-box" >
+      <h3>Work-energy Principle</h3>
+      <div class="variables">
+        <strong>work (W)</strong> - J<br>
+        <strong>kinetic energy (KE)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>W = ΔKE</strong>
+      </div>
+    </div>
+    
+    <div id="potential-energy" class="formula-box" >
+      <h3>Potential Energy</h3>
+      <div class="variables">
+        <strong>potential energy (PE)</strong> - J<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>gravitational acceleration (g)</strong> - m/s²<br>
+        <strong>height (h)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>PE = mgh</strong>
+      </div>
+    </div>
+    
+    <div id="conservation-of-mechanical-energy" class="formula-box" >
+      <h3>Conservation of Mechanical Energy</h3>
+      <div class="variables">
+        <strong>kinetic energy (KE)</strong> - J<br>
+        <strong>potential energy (PE)</strong> - J<br>
+        <strong>mechanical energy (E)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>E = KE + PE</strong>
+      </div>
+    </div>
+    
+    <div id="conservation-of-energy" class="formula-box" >
+      <h3>Conservation of Energy</h3>
+      <div class="variables">
+        <strong>initial energy (E₁)</strong> - J<br>
+        <strong>final energy (E₂)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>E₁ = E₂</strong>
+      </div>
+    </div>
+    
+    <div id="density-pressure" class="formula-box" >
+      <h3>Density and Pressure</h3>
+      <div class="variables">
+        <strong>density (ρ)</strong> - kg/m³<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>volume (V)</strong> - m³<br>
+        <strong>pressure (P)</strong> - Pa<br>
+        <strong>force (F)</strong> - N<br>
+        <strong>area (A)</strong> - m²
+      </div>
+      <div class="formula">
+        <strong>ρ = m / V</strong><br>
+        <strong>P = F / A</strong>
+      </div>
+    </div>
+    
+    <div id="pressure-of-liquids" class="formula-box" >
+      <h3>Pressure of Liquids</h3>
+      <div class="variables">
+        <strong>pressure (P)</strong> - Pa<br>
+        <strong>density (ρ)</strong> - kg/m³<br>
+        <strong>gravitational acceleration (g)</strong> - m/s²<br>
+        <strong>height (h)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>P = ρgh</strong>
+      </div>
+    </div>
+    
+    <div id="pascal-principle" class="formula-box" >
+      <h3>Pascal's Principle</h3>
+      <div class="variables">
+        <strong>pressure (P)</strong> - Pa<br>
+        <strong>force (F)</strong> - N<br>
+        <strong>area (A)</strong> - m²
+      </div>
+      <div class="formula">
+        <strong>P = F / A</strong>
+      </div>
+    </div>
+    
+    <div id="archimedes-principle" class="formula-box" >
+      <h3>Archimedes' Principle</h3>
+      <div class="variables">
+        <strong>buoyant force (F_b)</strong> - N<br>
+        <strong>density of fluid (ρ_f)</strong> - kg/m³<br>
+        <strong>volume of displaced fluid (V)</strong> - m³<br>
+        <strong>gravitational acceleration (g)</strong> - m/s²
+      </div>
+      <div class="formula">
+        <strong>F_b = ρ_f g V</strong>
+      </div>
+    </div>
+    
+    <div id="flow-rate" class="formula-box" >
+      <h3>Flow Rate</h3>
+      <div class="variables">
+        <strong>flow rate (Q)</strong> - m³/s<br>
+        <strong>velocity (v)</strong> - m/s<br>
+        <strong>cross-sectional area (A)</strong> - m²
+      </div>
+      <div class="formula">
+        <strong>Q = vA</strong>
+      </div>
+    </div>
+    
+    <div id="application" class="formula-box" >
+      <h3>Application</h3>
+      <div class="variables">
+        <strong>force (F)</strong> - N<br>
+        <strong>work (W)</strong> - J<br>
+        <strong>energy (E)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>W = Fd cos(θ)</strong><br>
+        <strong>KE = 1/2 mv²</strong><br>
+        <strong>PE = mgh</strong>
+      </div>
+    </div>
+
+    <div id="coulombs-law" class="formula-box" >
+      <h3>Coulomb's Law</h3>
+      <div class="variables">
+        <strong>force (F)</strong> - N<br>
+        <strong>charge 1 (q₁)</strong> - C<br>
+        <strong>charge 2 (q₂)</strong> - C<br>
+        <strong>distance (r)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>F = k(q₁q₂) / r²</strong>
+      </div>
+    </div>
+    
+    <div id="electric-fields" class="formula-box" >
+      <h3>Electric Fields</h3>
+      <div class="variables">
+        <strong>electric field (E)</strong> - N/C<br>
+        <strong>force (F)</strong> - N<br>
+        <strong>charge (q)</strong> - C
+      </div>
+      <div class="formula">
+        <strong>E = F / q</strong>
+      </div>
+    </div>
+    
+    <div id="principle-of-superposition-for-electric-fields" class="formula-box" >
+      <h3>The Principle of Superposition for Electric Fields</h3>
+      <div class="variables">
+        <strong>electric field (E)</strong> - N/C<br>
+        <strong>individual electric field (E₁, E₂, ...)</strong> - N/C
+      </div>
+      <div class="formula">
+        <strong>E = E₁ + E₂ + ...</strong>
+      </div>
+    </div>
+    
+    <div id="work-of-electric-force" class="formula-box" >
+      <h3>Work of Electric Force</h3>
+      <div class="variables">
+        <strong>work (W)</strong> - J<br>
+        <strong>force (F)</strong> - N<br>
+        <strong>displacement (d)</strong> - m<br>
+        <strong>electric field (E)</strong> - N/C<br>
+        <strong>distance (x)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>W = Fd cos(θ)</strong><br>
+        <strong>W = qEd</strong>
+      </div>
+    </div>
+    
+    <div id="electric-potential-difference" class="formula-box" >
+      <h3>Electric Potential Difference</h3>
+      <div class="variables">
+        <strong>potential difference (V)</strong> - V<br>
+        <strong>work (W)</strong> - J<br>
+        <strong>charge (q)</strong> - C
+      </div>
+      <div class="formula">
+        <strong>V = W / q</strong>
+      </div>
+    </div>
+    
+    <div id="relation-between-e-and-u" class="formula-box" >
+      <h3>Relation Between E and U</h3>
+      <div class="variables">
+        <strong>electric field (E)</strong> - N/C<br>
+        <strong>electric potential energy (U)</strong> - J<br>
+        <strong>distance (r)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>E = - dU / dr</strong>
+      </div>
+    </div>
+    
+    <div id="capacitance" class="formula-box" >
+      <h3>Capacitance</h3>
+      <div class="variables">
+        <strong>capacitance (C)</strong> - F<br>
+        <strong>charge (q)</strong> - C<br>
+        <strong>potential difference (V)</strong> - V
+      </div>
+      <div class="formula">
+        <strong>C = q / V</strong>
+      </div>
+    </div>
+    
+    <div id="capacitor" class="formula-box" >
+      <h3>Capacitor</h3>
+      <div class="variables">
+        <strong>capacitance (C)</strong> - F<br>
+        <strong>charge (q)</strong> - C<br>
+        <strong>potential difference (V)</strong> - V
+      </div>
+      <div class="formula">
+        <strong>C = q / V</strong>
+      </div>
+    </div>
+    
+    <div id="capacitances-in-series" class="formula-box" >
+      <h3>Capacitances in Series</h3>
+      <div class="variables">
+        <strong>total capacitance (Cₜ)</strong> - F<br>
+        <strong>individual capacitances (C₁, C₂, ...)</strong> - F
+      </div>
+      <div class="formula">
+        <strong>1 / Cₜ = 1 / C₁ + 1 / C₂ + ...</strong>
+      </div>
+    </div>
+    
+    <div id="capacitances-in-parallel" class="formula-box" >
+      <h3>Capacitances in Parallel</h3>
+      <div class="variables">
+        <strong>total capacitance (Cₜ)</strong> - F<br>
+        <strong>individual capacitances (C₁, C₂, ...)</strong> - F
+      </div>
+      <div class="formula">
+        <strong>Cₜ = C₁ + C₂ + ...</strong>
+      </div>
+    </div>
+    
+    <div id="electric-field-energy" class="formula-box" >
+      <h3>Electric Field Energy</h3>
+      <div class="variables">
+        <strong>electric field energy (U)</strong> - J<br>
+        <strong>electric field (E)</strong> - N/C<br>
+        <strong>volume (V)</strong> - m³<br>
+        <strong>permittivity of free space (ε₀)</strong> - F/m
+      </div>
+      <div class="formula">
+        <strong>U = (1/2) ε₀ E² V</strong>
+      </div>
+    </div>
+    
+    <div id="energy-of-capacitor" class="formula-box" >
+      <h3>Energy of Capacitor</h3>
+      <div class="variables">
+        <strong>energy (U)</strong> - J<br>
+        <strong>capacitance (C)</strong> - F<br>
+        <strong>voltage (V)</strong> - V
+      </div>
+      <div class="formula">
+        <strong>U = 1/2 C V²</strong>
+      </div>
+    </div>
+    
+    <div id="electric-current" class="formula-box" >
+      <h3>Electric Current</h3>
+      <div class="variables">
+        <strong>electric current (I)</strong> - A<br>
+        <strong>charge (q)</strong> - C<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>I = q / t</strong>
+      </div>
+    </div>
+    
+    <div id="ohms-law" class="formula-box" >
+      <h3>Ohm's Law</h3>
+      <div class="variables">
+        <strong>current (I)</strong> - A<br>
+        <strong>voltage (V)</strong> - V<br>
+        <strong>resistance (R)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>V = IR</strong>
+      </div>
+    </div>
+
+    <div id="work-created-by-a-current" class="formula-box" >
+      <h3>Work Created by a Current (Joule's Law)</h3>
+      <div class="variables">
+        <strong>work (W)</strong> - J<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>resistance (R)</strong> - Ω<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>W = I²Rt</strong>
+      </div>
+    </div>
+    
+    <div id="electrical-power" class="formula-box" >
+      <h3>Electrical Power</h3>
+      <div class="variables">
+        <strong>power (P)</strong> - W<br>
+        <strong>voltage (V)</strong> - V<br>
+        <strong>current (I)</strong> - A
+      </div>
+      <div class="formula">
+        <strong>P = VI</strong>
+      </div>
+    </div>
+    
+    <div id="resistance" class="formula-box" >
+      <h3>Resistance</h3>
+      <div class="variables">
+        <strong>resistance (R)</strong> - Ω<br>
+        <strong>resistivity (ρ)</strong> - Ω·m<br>
+        <strong>length (L)</strong> - m<br>
+        <strong>area (A)</strong> - m²
+      </div>
+      <div class="formula">
+        <strong>R = ρ(L / A)</strong>
+      </div>
+    </div>
+    
+    <div id="series-circuits" class="formula-box" >
+      <h3>Series Circuits</h3>
+      <div class="variables">
+        <strong>total resistance (Rₜ)</strong> - Ω<br>
+        <strong>individual resistances (R₁, R₂, ...)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>Rₜ = R₁ + R₂ + ...</strong>
+      </div>
+    </div>
+    
+    <div id="parallel-circuits" class="formula-box" >
+      <h3>Parallel Circuits</h3>
+      <div class="variables">
+        <strong>total resistance (Rₜ)</strong> - Ω<br>
+        <strong>individual resistances (R₁, R₂, ...)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>1 / Rₜ = 1 / R₁ + 1 / R₂ + ...</strong>
+      </div>
+    </div>
+    
+    <div id="work-or-heat-energy-produced-by-a-resistor" class="formula-box" >
+      <h3>Work or Heat Energy Produced by a Resistor</h3>
+      <div class="variables">
+        <strong>energy (W)</strong> - J<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>resistance (R)</strong> - Ω<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>W = I²Rt</strong>
+      </div>
+    </div>
+    
+    <div id="power-consumption-of-a-resistor" class="formula-box" >
+      <h3>Power Consumption of a Resistor</h3>
+      <div class="variables">
+        <strong>power (P)</strong> - W<br>
+        <strong>voltage (V)</strong> - V<br>
+        <strong>resistance (R)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>P = V² / R</strong>
+      </div>
+    </div>
+    
+    <div id="electromotive-force-of-an-electrical-generator" class="formula-box" >
+      <h3>Electromotive Force of an Electrical Generator</h3>
+      <div class="variables">
+        <strong>electromotive force (E)</strong> - V<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>resistance (R)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>E = IR</strong>
+      </div>
+    </div>
+    
+    <div id="generators-in-series" class="formula-box" >
+      <h3>Generators in Series</h3>
+      <div class="variables">
+        <strong>total electromotive force (Eₜ)</strong> - V<br>
+        <strong>individual electromotive forces (E₁, E₂, ...)</strong> - V
+      </div>
+      <div class="formula">
+        <strong>Eₜ = E₁ + E₂ + ...</strong>
+      </div>
+    </div>
+    
+    <div id="generators-in-parallel" class="formula-box" >
+      <h3>Generators in Parallel</h3>
+      <div class="variables">
+        <strong>electromotive force (E)</strong> - V<br>
+        <strong>internal resistance (r)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>1 / Eₜ = 1 / E₁ + 1 / E₂ + ...</strong>
+      </div>
+    </div>
+    
+    <div id="generators-in-series-parallel" class="formula-box" >
+      <h3>Generators in Series-Parallel</h3>
+      <div class="variables">
+        <strong>total electromotive force (Eₜ)</strong> - V<br>
+        <strong>internal resistance (r)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>1 / Eₜ = 1 / E₁ + 1 / E₂ + ...</strong>
+      </div>
+    </div>
+    
+    <div id="work-and-power-of-generator" class="formula-box" >
+      <h3>Work and Power of Generator</h3>
+      <div class="variables">
+        <strong>work (W)</strong> - J<br>
+        <strong>power (P)</strong> - W<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>W = P * t</strong>
+      </div>
+    </div>
+    
+    <div id="magnetic-flux-through-the-open-surface" class="formula-box" >
+      <h3>Magnetic Flux Through the Open Surface S</h3>
+      <div class="variables">
+        <strong>magnetic flux (Φ)</strong> - Wb<br>
+        <strong>magnetic field (B)</strong> - T<br>
+        <strong>area (A)</strong> - m²<br>
+        <strong>angle (θ)</strong> - °
+      </div>
+      <div class="formula">
+        <strong>Φ = B * A * cos(θ)</strong>
+      </div>
+    </div>
+    
+    <div id="magnetic-forces-on-moving-charges" class="formula-box" >
+      <h3>Magnetic Forces on Moving Charges</h3>
+      <div class="variables">
+        <strong>force (F)</strong> - N<br>
+        <strong>charge (q)</strong> - C<br>
+        <strong>velocity (v)</strong> - m/s<br>
+        <strong>magnetic field (B)</strong> - T<br>
+        <strong>angle (θ)</strong> - °
+      </div>
+      <div class="formula">
+        <strong>F = qvB sin(θ)</strong>
+      </div>
+    </div>
+    
+    <div id="force-on-a-current-carrying-wire" class="formula-box" >
+      <h3>Force on a Current-Carrying Wire</h3>
+      <div class="variables">
+        <strong>force (F)</strong> - N<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>length of wire (L)</strong> - m<br>
+        <strong>magnetic field (B)</strong> - T<br>
+        <strong>angle (θ)</strong> - °
+      </div>
+      <div class="formula">
+        <strong>F = ILB sin(θ)</strong>
+      </div>
+    </div>
+    
+    <div id="force-between-2-parallel-current-carrying-wires" class="formula-box" >
+      <h3>Force Between 2 Parallel Current-Carrying Wires</h3>
+      <div class="variables">
+        <strong>force (F)</strong> - N<br>
+        <strong>current (I₁, I₂)</strong> - A<br>
+        <strong>distance (r)</strong> - m<br>
+        <strong>magnetic constant (μ₀)</strong> - T·m/A
+      </div>
+      <div class="formula">
+        <strong>F = (μ₀ I₁ I₂) / (2πr)</strong>
+      </div>
+    </div>
+    
+    <div id="magnetic-field-of-a-long-current-charge-wire" class="formula-box" >
+      <h3>Magnetic Field of a Long Current-Carrying Wire</h3>
+      <div class="variables">
+        <strong>magnetic field (B)</strong> - T<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>distance (r)</strong> - m<br>
+        <strong>magnetic constant (μ₀)</strong> - T·m/A
+      </div>
+      <div class="formula">
+        <strong>B = (μ₀ I) / (2πr)</strong>
+      </div>
+    </div>
+    
+    <div id="magnetic-field-of-a-loop" class="formula-box" >
+      <h3>Magnetic Field of a Loop</h3>
+      <div class="variables">
+        <strong>magnetic field (B)</strong> - T<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>radius (r)</strong> - m<br>
+        <strong>number of turns (N)</strong> - count
+      </div>
+      <div class="formula">
+        <strong>B = (μ₀ N I) / (2r)</strong>
+      </div>
+    </div>
+    
+    <div id="induced-electromotive-force-faradays-law" class="formula-box" >
+      <h3>Induced Electromotive Force (Faraday's Law)</h3>
+      <div class="variables">
+        <strong>induced EMF (ε)</strong> - V<br>
+        <strong>rate of change of magnetic flux (dΦ/dt)</strong> - Wb/s
+      </div>
+      <div class="formula">
+        <strong>ε = - dΦ / dt</strong>
+      </div>
+    </div>
+    
+    <div id="inductance" class="formula-box" >
+      <h3>Inductance</h3>
+      <div class="variables">
+        <strong>inductance (L)</strong> - H<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>voltage (V)</strong> - V
+      </div>
+      <div class="formula">
+        <strong>V = L (dI / dt)</strong>
+      </div>
+    </div>
+    
+    <div id="electric-energy" class="formula-box" >
+      <h3>Electric Energy</h3>
+      <div class="variables">
+        <strong>electric energy (E)</strong> - J<br>
+        <strong>voltage (V)</strong> - V<br>
+        <strong>charge (q)</strong> - C
+      </div>
+      <div class="formula">
+        <strong>E = Vq</strong>
+      </div>
+    </div>
+    
+    <div id="electric-magnetic-energy" class="formula-box" >
+      <h3>Electric-Magnetic Energy</h3>
+      <div class="variables">
+        <strong>energy (E)</strong> - J<br>
+        <strong>electric field (E)</strong> - V/m<br>
+        <strong>magnetic field (B)</strong> - T
+      </div>
+      <div class="formula">
+        <strong>E = (1/2) ε₀ E² + (1/2) μ₀ B²</strong>
+      </div>
+    </div>
+    
+    <div id="basic-parameters" class="formula-box" >
+      <h3>Basic Parameters</h3>
+      <div class="variables">
+        <strong>resistance (R)</strong> - Ω<br>
+        <strong>voltage (V)</strong> - V<br>
+        <strong>current (I)</strong> - A
+      </div>
+      <div class="formula">
+        <strong>V = IR</strong>
+      </div>
+    </div>
+    
+    <div id="effective-current-and-voltage" class="formula-box" >
+      <h3>Effective Current and Voltage</h3>
+      <div class="variables">
+        <strong>effective voltage (Vₒ)</strong> - V<br>
+        <strong>peak voltage (Vₚ)</strong> - V
+      </div>
+      <div class="formula">
+        <strong>Vₒ = Vₚ / √2</strong>
+      </div>
+    </div>
+    
+    <div id="ohms-law-of-ac-current-containing-only-resistance-r" class="formula-box" >
+      <h3>Ohm's Law of AC Current Containing Only Resistance (R)</h3>
+      <div class="variables">
+        <strong>voltage (V)</strong> - V<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>resistance (R)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>V = IR</strong>
+      </div>
+    </div>
+    
+    <div id="ohms-law-of-ac-current-containing-only-inductor-l" class="formula-box" >
+      <h3>Ohm's Law of AC Current Containing Only Inductor (L)</h3>
+      <div class="variables">
+        <strong>voltage (V)</strong> - V<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>inductive reactance (Xₗ)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>V = IXₗ</strong>
+      </div>
+    </div>
+    
+    <div id="ohms-law-of-ac-current-containing-only-capacitor-c" class="formula-box" >
+      <h3>Ohm's Law of AC Current Containing Only Capacitor (C)</h3>
+      <div class="variables">
+        <strong>voltage (V)</strong> - V<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>capacitive reactance (Xc)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>V = IXc</strong>
+      </div>
+    </div>
+    
+    <div id="ohms-law-of-ac-current-containing-r-l-c-in-series" class="formula-box" >
+      <h3>Ohm's Law of AC Current Containing R, L, and C in Series</h3>
+      <div class="variables">
+        <strong>voltage (V)</strong> - V<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>total impedance (Z)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>V = IZ</strong>
+      </div>
+    </div>
+    
+    <div id="phase-angle" class="formula-box" >
+      <h3>Phase Angle</h3>
+      <div class="variables">
+        <strong>phase angle (ϕ)</strong> - rad<br>
+        <strong>resistance (R)</strong> - Ω<br>
+        <strong>inductive reactance (Xₗ)</strong> - Ω<br>
+        <strong>capacitive reactance (Xc)</strong> - Ω
+      </div>
+      <div class="formula">
+        <strong>tan(ϕ) = (Xₗ - Xc) / R</strong>
+      </div>
+    </div>
+    
+    <div id="power-factor" class="formula-box" >
+      <h3>Power Factor</h3>
+      <div class="variables">
+        <strong>power factor (pf)</strong> - unitless<br>
+        <strong>phase angle (ϕ)</strong> - rad
+      </div>
+      <div class="formula">
+        <strong>pf = cos(ϕ)</strong>
+      </div>
+    </div>
+    
+    <div id="real-power" class="formula-box" >
+      <h3>Real Power</h3>
+      <div class="variables">
+        <strong>real power (P)</strong> - W<br>
+        <strong>voltage (V)</strong> - V<br>
+        <strong>current (I)</strong> - A<br>
+        <strong>power factor (pf)</strong> - unitless
+      </div>
+      <div class="formula">
+        <strong>P = VIpf</strong>
+      </div>
+    </div>
+    
+    <div id="electrical-resonance" class="formula-box" >
+      <h3>Electrical Resonance</h3>
+      <div class="variables">
+        <strong>resonance frequency (f₀)</strong> - Hz<br>
+        <strong>inductance (L)</strong> - H<br>
+        <strong>capacitance (C)</strong> - F
+      </div>
+      <div class="formula">
+        <strong>f₀ = 1 / (2π√(LC))</strong>
+      </div>
+    </div>
+    
+    <div id="changing-voltage-with-transformers" class="formula-box" >
+      <h3>Changing Voltage with Transformers</h3>
+      <div class="variables">
+        <strong>primary voltage (V₁)</strong> - V<br>
+        <strong>secondary voltage (V₂)</strong> - V<br>
+        <strong>primary turns (N₁)</strong> - turns<br>
+        <strong>secondary turns (N₂)</strong> - turns
+      </div>
+      <div class="formula">
+        <strong>V₁ / V₂ = N₁ / N₂</strong>
+      </div>
+    </div>
+
+    <div id="kelvin-temperature" class="formula-box" >
+      <h3>Kelvin Temperature</h3>
+      <div class="variables">
+        <strong>temperature (T)</strong> - K<br>
+        <strong>Celsius temperature (Tₖ)</strong> - °C
+      </div>
+      <div class="formula">
+        <strong>T = Tₖ + 273.15</strong>
+      </div>
+    </div>
+    
+    <div id="equation-of-state" class="formula-box" >
+      <h3>Equation of State</h3>
+      <div class="variables">
+        <strong>pressure (P)</strong> - Pa<br>
+        <strong>volume (V)</strong> - m³<br>
+        <strong>temperature (T)</strong> - K<br>
+        <strong>number of moles (n)</strong> - mol<br>
+        <strong>gas constant (R)</strong> - J/(mol·K)
+      </div>
+      <div class="formula">
+        <strong>PV = nRT</strong>
+      </div>
+    </div>
+    
+    <div id="ideal-gas-law" class="formula-box" >
+      <h3>Ideal Gas Law</h3>
+      <div class="variables">
+        <strong>pressure (P)</strong> - Pa<br>
+        <strong>volume (V)</strong> - m³<br>
+        <strong>temperature (T)</strong> - K<br>
+        <strong>gas constant (R)</strong> - J/(mol·K)
+      </div>
+      <div class="formula">
+        <strong>PV = nRT</strong>
+      </div>
+    </div>
+    
+    <div id="boyles-law-for-pressure" class="formula-box" >
+      <h3>Boyle's Law for Pressure</h3>
+      <div class="variables">
+        <strong>pressure (P)</strong> - Pa<br>
+        <strong>volume (V)</strong> - m³
+      </div>
+      <div class="formula">
+        <strong>P₁V₁ = P₂V₂</strong>
+      </div>
+    </div>
+    
+    <div id="gay-lussacs-law-of-pressure-temperature" class="formula-box" >
+      <h3>Gay-Lussac's Law of Pressure-Temperature</h3>
+      <div class="variables">
+        <strong>pressure (P)</strong> - Pa<br>
+        <strong>temperature (T)</strong> - K
+      </div>
+      <div class="formula">
+        <strong>P₁/T₁ = P₂/T₂</strong>
+      </div>
+    </div>
+    
+    <div id="charless-law-of-volumes" class="formula-box" >
+      <h3>Charles's Law of Volumes</h3>
+      <div class="variables">
+        <strong>volume (V)</strong> - m³<br>
+        <strong>temperature (T)</strong> - K
+      </div>
+      <div class="formula">
+        <strong>V₁/T₁ = V₂/T₂</strong>
+      </div>
+    </div>
+    
+    <div id="heat" class="formula-box" >
+      <h3>Heat</h3>
+      <div class="variables">
+        <strong>heat (Q)</strong> - J<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>specific heat capacity (c)</strong> - J/(kg·K)<br>
+        <strong>temperature change (ΔT)</strong> - K
+      </div>
+      <div class="formula">
+        <strong>Q = mcΔT</strong>
+      </div>
+    </div>
+    
+    <div id="fusion-freezing-or-solidification" class="formula-box" >
+      <h3>Fusion (Freezing or Solidification)</h3>
+      <div class="variables">
+        <strong>heat (Q)</strong> - J<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>latent heat of fusion (Lₓ)</strong> - J/kg
+      </div>
+      <div class="formula">
+        <strong>Q = mLₓ</strong>
+      </div>
+    </div>
+    
+    <div id="vaporization" class="formula-box" >
+      <h3>Vaporization</h3>
+      <div class="variables">
+        <strong>heat (Q)</strong> - J<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>latent heat of vaporization (Lᵥ)</strong> - J/kg
+      </div>
+      <div class="formula">
+        <strong>Q = mLᵥ</strong>
+      </div>
+    </div>
+    
+    <div id="linear-expansion" class="formula-box" >
+      <h3>Linear Expansion</h3>
+      <div class="variables">
+        <strong>change in length (ΔL)</strong> - m<br>
+        <strong>original length (L₀)</strong> - m<br>
+        <strong>coefficient of linear expansion (α)</strong> - 1/K<br>
+        <strong>temperature change (ΔT)</strong> - K
+      </div>
+      <div class="formula">
+        <strong>ΔL = αL₀ΔT</strong>
+      </div>
+    </div>
+    
+    <div id="volume-expansion" class="formula-box" >
+      <h3>Volume Expansion</h3>
+      <div class="variables">
+        <strong>change in volume (ΔV)</strong> - m³<br>
+        <strong>original volume (V₀)</strong> - m³<br>
+        <strong>coefficient of volume expansion (β)</strong> - 1/K<br>
+        <strong>temperature change (ΔT)</strong> - K
+      </div>
+      <div class="formula">
+        <strong>ΔV = βV₀ΔT</strong>
+      </div>
+    </div>
+    
+    <div id="area-expansion" class="formula-box" >
+      <h3>Area Expansion</h3>
+      <div class="variables">
+        <strong>change in area (ΔA)</strong> - m²<br>
+        <strong>original area (A₀)</strong> - m²<br>
+        <strong>coefficient of area expansion (β)</strong> - 1/K<br>
+        <strong>temperature change (ΔT)</strong> - K
+      </div>
+      <div class="formula">
+        <strong>ΔA = 2αA₀ΔT</strong>
+      </div>
+    </div>
+    
+    <div id="change-of-density" class="formula-box" >
+      <h3>Change of Density (Volumetric Mass Density)</h3>
+      <div class="variables">
+        <strong>density (ρ)</strong> - kg/m³<br>
+        <strong>initial density (ρ₀)</strong> - kg/m³<br>
+        <strong>temperature change (ΔT)</strong> - K
+      </div>
+      <div class="formula">
+        <strong>Δρ = ρ₀βΔT</strong>
+      </div>
+    </div>
+    
+    <div id="change-of-diameter-of-the-cross-section-of-a-solid" class="formula-box" >
+      <h3>Change of Diameter of the Cross-Section of a Solid</h3>
+      <div class="variables">
+        <strong>change in diameter (ΔD)</strong> - m<br>
+        <strong>original diameter (D₀)</strong> - m<br>
+        <strong>coefficient of linear expansion (α)</strong> - 1/K<br>
+        <strong>temperature change (ΔT)</strong> - K
+      </div>
+      <div class="formula">
+        <strong>ΔD = αD₀ΔT</strong>
+      </div>
+    </div>
+    
+    <div id="the-first-law-of-thermodynamics" class="formula-box" >
+      <h3>The First Law of Thermodynamics</h3>
+      <div class="variables">
+        <strong>internal energy change (ΔU)</strong> - J<br>
+        <strong>heat added to the system (Q)</strong> - J<br>
+        <strong>work done by the system (W)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>ΔU = Q - W</strong>
+      </div>
+    </div>
+    
+    <div id="application-of-first-law-to-ideal-gas-laws" class="formula-box" >
+      <h3>Application of First Law to Ideal Gas Laws</h3>
+      <div class="variables">
+        <strong>heat added to the gas (Q)</strong> - J<br>
+        <strong>work done by the gas (W)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>Q = ΔU + W</strong>
+      </div>
+    </div>
+    
+    <div id="the-second-law-of-thermodynamics" class="formula-box" >
+      <h3>The Second Law of Thermodynamics</h3>
+      <div class="variables">
+        <strong>entropy change (ΔS)</strong> - J/K<br>
+        <strong>heat added to the system (Q)</strong> - J<br>
+        <strong>temperature (T)</strong> - K
+      </div>
+      <div class="formula">
+        <strong>ΔS = Q / T</strong>
+      </div>
+    </div>
+    <div id="spring" class="formula-box" >
+      <h3>Spring</h3>
+      <div class="variables">
+        <strong>force (F)</strong> - N<br>
+        <strong>spring constant (k)</strong> - N/m<br>
+        <strong>displacement (x)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>F = -kx</strong>
+      </div>
+    </div>
+    
+    <div id="springs-in-series" class="formula-box" >
+      <h3>Springs in Series</h3>
+      <div class="variables">
+        <strong>spring constant (k₁, k₂)</strong> - N/m
+      </div>
+      <div class="formula">
+        <strong>1/k = 1/k₁ + 1/k₂</strong>
+      </div>
+    </div>
+    
+    <div id="springs-in-parallel" class="formula-box" >
+      <h3>Springs in Parallel</h3>
+      <div class="variables">
+        <strong>spring constant (k₁, k₂)</strong> - N/m
+      </div>
+      <div class="formula">
+        <strong>k = k₁ + k₂</strong>
+      </div>
+    </div>
+    
+    <div id="simple-pendulum" class="formula-box" >
+      <h3>Simple Pendulum</h3>
+      <div class="variables">
+        <strong>gravitational acceleration (g)</strong> - m/s²<br>
+        <strong>length of pendulum (L)</strong> - m<br>
+        <strong>period (T)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>T = 2π√(L/g)</strong>
+      </div>
+    </div>
+    
+    <div id="motion-equations" class="formula-box" >
+      <h3>Motion Equations</h3>
+      <div class="variables">
+        <strong>displacement (s)</strong> - m<br>
+        <strong>initial velocity (u)</strong> - m/s<br>
+        <strong>final velocity (v)</strong> - m/s<br>
+        <strong>acceleration (a)</strong> - m/s²<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>v = u + at</strong><br>
+        <strong>s = ut + 1/2 at²</strong><br>
+        <strong>v² = u² + 2as</strong>
+      </div>
+    </div>
+    
+    <div id="energy" class="formula-box" >
+      <h3>Energy</h3>
+      <div class="variables">
+        <strong>kinetic energy (K)</strong> - J<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>velocity (v)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>K = 1/2 mv²</strong>
+      </div>
+    </div>
+    
+    <div id="change-of-period-following-the-change-of-the-temperature" class="formula-box" >
+      <h3>Change of Period Following the Change of Temperature</h3>
+      <div class="variables">
+        <strong>period (T)</strong> - s<br>
+        <strong>temperature (ΔT)</strong> - K
+      </div>
+      <div class="formula">
+        <strong>ΔT = αT₀ΔT</strong>
+      </div>
+    </div>
+    
+    <div id="change-of-period-following-the-change-of-the-height" class="formula-box" >
+      <h3>Change of Period Following the Change of the Height</h3>
+      <div class="variables">
+        <strong>height (h)</strong> - m<br>
+        <strong>gravitational acceleration (g)</strong> - m/s²<br>
+        <strong>period (T)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>T = 2π√(L/g)</strong>
+      </div>
+    </div>
+    
+    <div id="pendulum" class="formula-box" >
+      <h3>Pendulum</h3>
+      <div class="variables">
+        <strong>gravitational acceleration (g)</strong> - m/s²<br>
+        <strong>length of pendulum (L)</strong> - m<br>
+        <strong>period (T)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>T = 2π√(L/g)</strong>
+      </div>
+    </div>
+    
+    <div id="wavelength" class="formula-box" >
+      <h3>Wavelength</h3>
+      <div class="variables">
+        <strong>wavelength (λ)</strong> - m<br>
+        <strong>frequency (f)</strong> - Hz<br>
+        <strong>speed of wave (v)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>λ = v / f</strong>
+      </div>
+    </div>
+    
+    <div id="function-of-wave-at-some-points" class="formula-box" >
+      <h3>Function of Wave at Some Points</h3>
+      <div class="variables">
+        <strong>displacement (y)</strong> - m<br>
+        <strong>wave number (k)</strong> - 1/m<br>
+        <strong>angular frequency (ω)</strong> - rad/s<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>y(x,t) = A sin(kx - ωt)</strong>
+      </div>
+    </div>
+    
+    <div id="wave-interference" class="formula-box" >
+      <h3>Wave Interference</h3>
+      <div class="variables">
+        <strong>amplitude (A₁, A₂)</strong> - m<br>
+        <strong>displacement (y)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>y = A₁ + A₂</strong>
+      </div>
+    </div>
+    
+    <div id="sound-speed" class="formula-box" >
+      <h3>Sound Speed</h3>
+      <div class="variables">
+        <strong>speed of sound (v)</strong> - m/s<br>
+        <strong>bulk modulus (B)</strong> - Pa<br>
+        <strong>density (ρ)</strong> - kg/m³
+      </div>
+      <div class="formula">
+        <strong>v = √(B/ρ)</strong>
+      </div>
+    </div>
+    
+    <div id="sound-intensity" class="formula-box" >
+      <h3>Sound Intensity</h3>
+      <div class="variables">
+        <strong>intensity (I)</strong> - W/m²<br>
+        <strong>power (P)</strong> - W<br>
+        <strong>area (A)</strong> - m²
+      </div>
+      <div class="formula">
+        <strong>I = P / A</strong>
+      </div>
+    </div>
+    
+    <div id="sound-intensity-level" class="formula-box" >
+      <h3>Sound Intensity Level</h3>
+      <div class="variables">
+        <strong>intensity level (L)</strong> - dB<br>
+        <strong>sound intensity (I)</strong> - W/m²<br>
+        <strong>reference intensity (I₀)</strong> - W/m²
+      </div>
+      <div class="formula">
+        <strong>L = 10 log₁₀(I / I₀)</strong>
+      </div>
+    </div>
+    
+    <div id="doppler-effect" class="formula-box" >
+      <h3>The Doppler Effect</h3>
+      <div class="variables">
+        <strong>observed frequency (fₒ)</strong> - Hz<br>
+        <strong>source frequency (fₛ)</strong> - Hz<br>
+        <strong>speed of sound (v)</strong> - m/s<br>
+        <strong>speed of source (vₛ)</strong> - m/s<br>
+        <strong>speed of observer (vₒ)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>fₒ = fₛ (v ± vₒ) / (v ± vₛ)</strong>
+      </div>
+    </div>
+    
+    <div id="sound-speed-in-gases" class="formula-box" >
+      <h3>Sound Speed in Gases</h3>
+      <div class="variables">
+        <strong>speed of sound (v)</strong> - m/s<br>
+        <strong>gas constant (R)</strong> - J/(mol·K)<br>
+        <strong>temperature (T)</strong> - K<br>
+        <strong>molar mass (M)</strong> - kg/mol
+      </div>
+      <div class="formula">
+        <strong>v = √(γRT / M)</strong>
+      </div>
+    </div>
+
+    <div id="laws-of-reflection" class="formula-box" >
+      <h3>Laws of Reflection</h3>
+      <div class="variables">
+        <strong>angle of incidence (θᵢ)</strong> - °<br>
+        <strong>angle of reflection (θᵣ)</strong> - °
+      </div>
+      <div class="formula">
+        <strong>θᵣ = θᵢ</strong>
+      </div>
+    </div>
+    
+    <div id="refractive-index" class="formula-box" >
+      <h3>Refractive Index</h3>
+      <div class="variables">
+        <strong>refractive index (n)</strong> - no unit<br>
+        <strong>speed of light in vacuum (c)</strong> - m/s<br>
+        <strong>speed of light in medium (v)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>n = c / v</strong>
+      </div>
+    </div>
+    
+    <div id="law-of-refraction" class="formula-box" >
+      <h3>Law of Refraction</h3>
+      <div class="variables">
+        <strong>angle of incidence (θᵢ)</strong> - °<br>
+        <strong>angle of refraction (θᵣ)</strong> - °<br>
+        <strong>refractive index (n₁, n₂)</strong> - no unit
+      </div>
+      <div class="formula">
+        <strong>n₁ sin(θᵢ) = n₂ sin(θᵣ)</strong>
+      </div>
+    </div>
+    
+    <div id="total-reflection-phenomenon" class="formula-box" >
+      <h3>Total Reflection Phenomenon</h3>
+      <div class="variables">
+        <strong>angle of incidence (θᵢ)</strong> - °<br>
+        <strong>critical angle (θᶜ)</strong> - °
+      </div>
+      <div class="formula">
+        <strong>θᵢ ≥ θᶜ</strong>
+      </div>
+    </div>
+    
+    <div id="prism" class="formula-box" >
+      <h3>Prism</h3>
+      <div class="variables">
+        <strong>angle of prism (A)</strong> - °<br>
+        <strong>angle of deviation (δ)</strong> - °
+      </div>
+      <div class="formula">
+        <strong>δ = A</strong>
+      </div>
+    </div>
+    
+    <div id="thin-lens" class="formula-box" >
+      <h3>Thin Lens</h3>
+      <div class="variables">
+        <strong>focal length (f)</strong> - m<br>
+        <strong>object distance (u)</strong> - m<br>
+        <strong>image distance (v)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>1/f = 1/v - 1/u</strong>
+      </div>
+    </div>
+    
+    <div id="magnification-factor" class="formula-box" >
+      <h3>Magnification Factor</h3>
+      <div class="variables">
+        <strong>magnification (M)</strong> - no unit<br>
+        <strong>image height (hᵢ)</strong> - m<br>
+        <strong>object height (hₒ)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>M = hᵢ / hₒ</strong><br>
+        <strong>M = v / u</strong>
+      </div>
+    </div>
+    
+    <div id="power-of-the-lens" class="formula-box" >
+      <h3>Power of the Lens</h3>
+      <div class="variables">
+        <strong>power (P)</strong> - diopter (D)<br>
+        <strong>focal length (f)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>P = 1/f</strong>
+      </div>
+    </div>
+    
+    <div id="photon-energy" class="formula-box" >
+      <h3>Photon Energy</h3>
+      <div class="variables">
+        <strong>photon energy (E)</strong> - J<br>
+        <strong>Planck's constant (h)</strong> - J·s<br>
+        <strong>frequency (f)</strong> - Hz
+      </div>
+      <div class="formula">
+        <strong>E = hf</strong>
+      </div>
+    </div>
+    
+    <div id="condition-to-have-photoelectric-effect" class="formula-box" >
+      <h3>Condition to Have Photoelectric Effect</h3>
+      <div class="variables">
+        <strong>threshold frequency (fₜ)</strong> - Hz<br>
+        <strong>incident frequency (f)</strong> - Hz<br>
+        <strong>photon energy (E)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>f ≥ fₜ</strong>
+      </div>
+    </div>
+    
+    <div id="einsteins-equation-about-photoelectric-effect" class="formula-box" >
+      <h3>Einstein's Equation About Photoelectric Effect</h3>
+      <div class="variables">
+        <strong>photon energy (E)</strong> - J<br>
+        <strong>work function (ϕ)</strong> - J<br>
+        <strong>kinetic energy of electron (K)</strong> - J<br>
+        <strong>frequency (f)</strong> - Hz
+      </div>
+      <div class="formula">
+        <strong>E = ϕ + K</strong>
+      </div>
+    </div>
+    
+    <div id="mass-energy-equivalence" class="formula-box" >
+      <h3>Mass-energy Equivalence</h3>
+      <div class="variables">
+        <strong>energy (E)</strong> - J<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>speed of light (c)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>E = mc²</strong>
+      </div>
+    </div>
+    
+    <div id="length-contraction" class="formula-box" >
+      <h3>Length Contraction</h3>
+      <div class="variables">
+        <strong>contracted length (Lₒ)</strong> - m<br>
+        <strong>proper length (L)</strong> - m<br>
+        <strong>velocity (v)</strong> - m/s<br>
+        <strong>speed of light (c)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>Lₒ = L √(1 - v²/c²)</strong>
+      </div>
+    </div>
+    
+    <div id="relativistic-mass" class="formula-box" >
+      <h3>Relativistic Mass</h3>
+      <div class="variables">
+        <strong>relativistic mass (mₓ)</strong> - kg<br>
+        <strong>rest mass (m₀)</strong> - kg<br>
+        <strong>velocity (v)</strong> - m/s<br>
+        <strong>speed of light (c)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>mₓ = m₀ / √(1 - v²/c²)</strong>
+      </div>
+    </div>
+    
+    <div id="time-dilation" class="formula-box" >
+      <h3>Time Dilation</h3>
+      <div class="variables">
+        <strong>dilated time (tₓ)</strong> - s<br>
+        <strong>proper time (t₀)</strong> - s<br>
+        <strong>velocity (v)</strong> - m/s<br>
+        <strong>speed of light (c)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>tₓ = t₀ / √(1 - v²/c²)</strong>
+      </div>
+    </div>
+    
+    <div id="nuclear-reaction" class="formula-box" >
+      <h3>Nuclear Reaction</h3>
+      <div class="variables">
+        <strong>nuclear energy (E)</strong> - J<br>
+        <strong>mass defect (Δm)</strong> - kg<br>
+        <strong>speed of light (c)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>E = Δm c²</strong>
+      </div>
+    </div>
+    
+    <div id="radioactive-decay" class="formula-box" >
+      <h3>Radioactive Decay</h3>
+      <div class="variables">
+        <strong>decay constant (λ)</strong> - 1/s<br>
+        <strong>initial quantity (N₀)</strong> - atoms<br>
+        <strong>quantity after time (N)</strong> - atoms<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>N = N₀ e^(-λt)</strong>
+      </div>
+    </div>
+    
+    <div id="amount-of-radioactivity" class="formula-box" >
+      <h3>Amount of Radioactivity</h3>
+      <div class="variables">
+        <strong>activity (A)</strong> - Bq<br>
+        <strong>decay constant (λ)</strong> - 1/s<br>
+        <strong>quantity (N)</strong> - atoms
+      </div>
+      <div class="formula">
+        <strong>A = λN</strong>
+      </div>
+    </div>
+    
+    <div id="nuclear-makeup" class="formula-box" >
+      <h3>Nuclear Makeup</h3>
+      <div class="variables">
+        <strong>nucleus (N)</strong> - no unit<br>
+        <strong>protons (Z)</strong> - no unit<br>
+        <strong>neutrons (Nₙ)</strong> - no unit
+      </div>
+      <div class="formula">
+        <strong>N = Z + Nₙ</strong>
+      </div>
+    </div>
+
+    <div id="laws-of-reflection" class="formula-box" >
+      <h3>Laws of Reflection</h3>
+      <div class="variables">
+        <strong>angle of incidence (θᵢ)</strong> - °<br>
+        <strong>angle of reflection (θᵣ)</strong> - °
+      </div>
+      <div class="formula">
+        <strong>θᵣ = θᵢ</strong>
+      </div>
+    </div>
+    
+    <div id="refractive-index" class="formula-box" >
+      <h3>Refractive Index</h3>
+      <div class="variables">
+        <strong>refractive index (n)</strong> - no unit<br>
+        <strong>speed of light in vacuum (c)</strong> - m/s<br>
+        <strong>speed of light in medium (v)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>n = c / v</strong>
+      </div>
+    </div>
+    
+    <div id="law-of-refraction" class="formula-box" >
+      <h3>Law of Refraction</h3>
+      <div class="variables">
+        <strong>angle of incidence (θᵢ)</strong> - °<br>
+        <strong>angle of refraction (θᵣ)</strong> - °<br>
+        <strong>refractive index (n₁, n₂)</strong> - no unit
+      </div>
+      <div class="formula">
+        <strong>n₁ sin(θᵢ) = n₂ sin(θᵣ)</strong>
+      </div>
+    </div>
+    
+    <div id="total-reflection-phenomenon" class="formula-box" >
+      <h3>Total Reflection Phenomenon</h3>
+      <div class="variables">
+        <strong>angle of incidence (θᵢ)</strong> - °<br>
+        <strong>critical angle (θᶜ)</strong> - °
+      </div>
+      <div class="formula">
+        <strong>θᵢ ≥ θᶜ</strong>
+      </div>
+    </div>
+    
+    <div id="prism" class="formula-box" >
+      <h3>Prism</h3>
+      <div class="variables">
+        <strong>angle of prism (A)</strong> - °<br>
+        <strong>angle of deviation (δ)</strong> - °
+      </div>
+      <div class="formula">
+        <strong>δ = A</strong>
+      </div>
+    </div>
+    
+    <div id="thin-lens" class="formula-box" >
+      <h3>Thin Lens</h3>
+      <div class="variables">
+        <strong>focal length (f)</strong> - m<br>
+        <strong>object distance (u)</strong> - m<br>
+        <strong>image distance (v)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>1/f = 1/v - 1/u</strong>
+      </div>
+    </div>
+    
+    <div id="magnification-factor" class="formula-box" >
+      <h3>Magnification Factor</h3>
+      <div class="variables">
+        <strong>magnification (M)</strong> - no unit<br>
+        <strong>image height (hᵢ)</strong> - m<br>
+        <strong>object height (hₒ)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>M = hᵢ / hₒ</strong><br>
+        <strong>M = v / u</strong>
+      </div>
+    </div>
+    
+    <div id="power-of-the-lens" class="formula-box" >
+      <h3>Power of the Lens</h3>
+      <div class="variables">
+        <strong>power (P)</strong> - diopter (D)<br>
+        <strong>focal length (f)</strong> - m
+      </div>
+      <div class="formula">
+        <strong>P = 1/f</strong>
+      </div>
+    </div>
+    
+    <div id="photon-energy" class="formula-box" >
+      <h3>Photon Energy</h3>
+      <div class="variables">
+        <strong>photon energy (E)</strong> - J<br>
+        <strong>Planck's constant (h)</strong> - J·s<br>
+        <strong>frequency (f)</strong> - Hz
+      </div>
+      <div class="formula">
+        <strong>E = hf</strong>
+      </div>
+    </div>
+    
+    <div id="condition-to-have-photoelectric-effect" class="formula-box" >
+      <h3>Condition to Have Photoelectric Effect</h3>
+      <div class="variables">
+        <strong>threshold frequency (fₜ)</strong> - Hz<br>
+        <strong>incident frequency (f)</strong> - Hz<br>
+        <strong>photon energy (E)</strong> - J
+      </div>
+      <div class="formula">
+        <strong>f ≥ fₜ</strong>
+      </div>
+    </div>
+    
+    <div id="einsteins-equation-about-photoelectric-effect" class="formula-box" >
+      <h3>Einstein's Equation About Photoelectric Effect</h3>
+      <div class="variables">
+        <strong>photon energy (E)</strong> - J<br>
+        <strong>work function (ϕ)</strong> - J<br>
+        <strong>kinetic energy of electron (K)</strong> - J<br>
+        <strong>frequency (f)</strong> - Hz
+      </div>
+      <div class="formula">
+        <strong>E = ϕ + K</strong>
+      </div>
+    </div>
+    
+    <div id="mass-energy-equivalence" class="formula-box" >
+      <h3>Mass-energy Equivalence</h3>
+      <div class="variables">
+        <strong>energy (E)</strong> - J<br>
+        <strong>mass (m)</strong> - kg<br>
+        <strong>speed of light (c)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>E = mc²</strong>
+      </div>
+    </div>
+    
+    <div id="length-contraction" class="formula-box" >
+      <h3>Length Contraction</h3>
+      <div class="variables">
+        <strong>contracted length (Lₒ)</strong> - m<br>
+        <strong>proper length (L)</strong> - m<br>
+        <strong>velocity (v)</strong> - m/s<br>
+        <strong>speed of light (c)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>Lₒ = L √(1 - v²/c²)</strong>
+      </div>
+    </div>
+    
+    <div id="relativistic-mass" class="formula-box" >
+      <h3>Relativistic Mass</h3>
+      <div class="variables">
+        <strong>relativistic mass (mₓ)</strong> - kg<br>
+        <strong>rest mass (m₀)</strong> - kg<br>
+        <strong>velocity (v)</strong> - m/s<br>
+        <strong>speed of light (c)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>mₓ = m₀ / √(1 - v²/c²)</strong>
+      </div>
+    </div>
+    
+    <div id="time-dilation" class="formula-box" >
+      <h3>Time Dilation</h3>
+      <div class="variables">
+        <strong>dilated time (tₓ)</strong> - s<br>
+        <strong>proper time (t₀)</strong> - s<br>
+        <strong>velocity (v)</strong> - m/s<br>
+        <strong>speed of light (c)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>tₓ = t₀ / √(1 - v²/c²)</strong>
+      </div>
+    </div>
+    
+    <div id="nuclear-reaction" class="formula-box" >
+      <h3>Nuclear Reaction</h3>
+      <div class="variables">
+        <strong>nuclear energy (E)</strong> - J<br>
+        <strong>mass defect (Δm)</strong> - kg<br>
+        <strong>speed of light (c)</strong> - m/s
+      </div>
+      <div class="formula">
+        <strong>E = Δm c²</strong>
+      </div>
+    </div>
+    
+    <div id="radioactive-decay" class="formula-box" >
+      <h3>Radioactive Decay</h3>
+      <div class="variables">
+        <strong>decay constant (λ)</strong> - 1/s<br>
+        <strong>initial quantity (N₀)</strong> - atoms<br>
+        <strong>quantity after time (N)</strong> - atoms<br>
+        <strong>time (t)</strong> - s
+      </div>
+      <div class="formula">
+        <strong>N = N₀ e^(-λt)</strong>
+      </div>
+    </div>
+    
+    <div id="amount-of-radioactivity" class="formula-box" >
+      <h3>Amount of Radioactivity</h3>
+      <div class="variables">
+        <strong>activity (A)</strong> - Bq<br>
+        <strong>decay constant (λ)</strong> - 1/s<br>
+        <strong>quantity (N)</strong> - atoms
+      </div>
+      <div class="formula">
+        <strong>A = λN</strong>
+      </div>
+    </div>
+    
+    <div id="nuclear-makeup" class="formula-box" >
+      <h3>Nuclear Makeup</h3>
+      <div class="variables">
+        <strong>nucleus (N)</strong> - no unit<br>
+        <strong>protons (Z)</strong> - no unit<br>
+        <strong>neutrons (Nₙ)</strong> - no unit
+      </div>
+      <div class="formula">
+        <strong>N = Z + Nₙ</strong>
+      </div>
+    </div>
+
+    <div id="alpha-particle-mass" class="formula-box" >
+      <h3>Alpha Particle Mass</h3>
+      <div class="variables"><strong>mₐ</strong> - kg</div>
+      <div class="formula"><strong>mₐ = 6.644657 × 10⁻²⁷ kg</strong></div>
+    </div>
+    
+    <div id="atomic-mass-constant" class="formula-box" >
+      <h3>Atomic Mass Constant</h3>
+      <div class="variables"><strong>u</strong> - kg</div>
+      <div class="formula"><strong>u = 1.66053906660 × 10⁻²⁷ kg</strong></div>
+    </div>
+    
+    <div id="atomic-unit-of-energy" class="formula-box" >
+      <h3>Atomic Unit of Energy</h3>
+      <div class="variables"><strong>Eₐ</strong> - J</div>
+      <div class="formula"><strong>Eₐ = 4.35974434 × 10⁻¹⁸ J</strong></div>
+    </div>
+    
+    <div id="atomic-unit-of-force" class="formula-box" >
+      <h3>Atomic Unit of Force</h3>
+      <div class="variables"><strong>Fₐ</strong> - N</div>
+      <div class="formula"><strong>Fₐ = 8.2387223 × 10⁻¹⁸ N</strong></div>
+    </div>
+    
+    <div id="atomic-unit-of-length" class="formula-box" >
+      <h3>Atomic Unit of Length</h3>
+      <div class="variables"><strong>lₐ</strong> - m</div>
+      <div class="formula"><strong>lₐ = 5.291772108 × 10⁻¹¹ m</strong></div>
+    </div>
+    
+    <div id="atomic-unit-of-mass" class="formula-box" >
+      <h3>Atomic Unit of Mass</h3>
+      <div class="variables"><strong>mₐ</strong> - kg</div>
+      <div class="formula"><strong>mₐ = 9.10938356 × 10⁻³¹ kg</strong></div>
+    </div>
+    
+    <div id="avogadros-constant" class="formula-box" >
+      <h3>Avogadro's Constant</h3>
+      <div class="variables"><strong>Nₐ</strong> - 1/mol</div>
+      <div class="formula"><strong>Nₐ = 6.02214076 × 10²³ 1/mol</strong></div>
+    </div>
+    
+    <div id="bohr-radius" class="formula-box" >
+      <h3>Bohr Radius</h3>
+      <div class="variables"><strong>a₀</strong> - m</div>
+      <div class="formula"><strong>a₀ = 5.291772108 × 10⁻¹¹ m</strong></div>
+    </div>
+    
+    <div id="boltzmann-constant" class="formula-box" >
+      <h3>Boltzmann Constant</h3>
+      <div class="variables"><strong>k</strong> - J/K</div>
+      <div class="formula"><strong>k = 1.380649 × 10⁻²³ J/K</strong></div>
+    </div>
+    
+    <div id="classical-electron-radius" class="formula-box" >
+      <h3>Classical Electron Radius</h3>
+      <div class="variables"><strong>rₑ</strong> - m</div>
+      <div class="formula"><strong>rₑ = 2.817940326 × 10⁻¹⁵ m</strong></div>
+    </div>
+    
+    <div id="elementary-charge" class="formula-box" >
+      <h3>Elementary Charge</h3>
+      <div class="variables"><strong>e</strong> - C</div>
+      <div class="formula"><strong>e = 1.602176634 × 10⁻¹⁹ C</strong></div>
+    </div>
+    
+    <div id="earth-mass" class="formula-box" >
+      <h3>Earth Mass</h3>
+      <div class="variables"><strong>Mₑ</strong> - kg</div>
+      <div class="formula"><strong>Mₑ = 5.972 × 10²⁴ kg</strong></div>
+    </div>
+    
+    <div id="earth-equatorial-radius" class="formula-box" >
+      <h3>Earth Equatorial Radius</h3>
+      <div class="variables"><strong>Rₑ</strong> - m</div>
+      <div class="formula"><strong>Rₑ = 6.3781 × 10⁶ m</strong></div>
+    </div>
+    
+    <div id="earth-mean-orbital-velocity" class="formula-box" >
+      <h3>Earth Mean Orbital Velocity</h3>
+      <div class="variables"><strong>vₑ</strong> - m/s</div>
+      <div class="formula"><strong>vₑ = 29,783 m/s</strong></div>
+    </div>
+    
+    <div id="earth-rotational-angular-velocity" class="formula-box" >
+      <h3>Earth Rotational Angular Velocity</h3>
+      <div class="variables"><strong>ω</strong> - rad/s</div>
+      <div class="formula"><strong>ω = 7.2722 × 10⁻⁵ rad/s</strong></div>
+    </div>
+    
+    <div id="faradays-constant" class="formula-box" >
+      <h3>Faraday's Constant</h3>
+      <div class="variables"><strong>F</strong> - C/mol</div>
+      <div class="formula"><strong>F = 96485 C/mol</strong></div>
+    </div>
+    
+    <div id="gas-constant" class="formula-box" >
+      <h3>Gas Constant</h3>
+      <div class="variables"><strong>R</strong> - J/mol·K</div>
+      <div class="formula"><strong>R = 8.314 J/mol·K</strong></div>
+    </div>
+    
+    <div id="plancks-constant" class="formula-box" >
+      <h3>Planck's Constant</h3>
+      <div class="variables"><strong>h</strong> - J·s</div>
+      <div class="formula"><strong>h = 6.62607015 × 10⁻³⁴ J·s</strong></div>
+    </div>
+    
+    <div id="speed-of-light-in-vacuum" class="formula-box" >
+      <h3>Speed of Light in Vacuum</h3>
+      <div class="variables"><strong>c</strong> - m/s</div>
+      <div class="formula"><strong>c = 2.998 × 10⁸ m/s</strong></div>
+    </div>
+    
+    <div id="stefan-boltzmann-constant" class="formula-box" >
+      <h3>Stefan-Boltzmann Constant</h3>
+      <div class="variables"><strong>σ</strong> - W/m²·K⁴</div>
+      <div class="formula"><strong>σ = 5.670374419 × 10⁻⁸ W/m²·K⁴</strong></div>
+    </div>
+
+    <div id="molar-mass-constant" class="formula-box" >
+      <h3>Molar Mass Constant</h3>
+      <div class="variables"><strong>Mᵤ</strong> - kg/mol</div>
+      <div class="formula"><strong>Mᵤ = 1.66053906660 × 10⁻²⁷ kg</strong></div>
+    </div>
+    
+    <div id="molar-volume-ideal-gas" class="formula-box" >
+      <h3>Molar Volume of Ideal Gas</h3>
+      <div class="variables"><strong>Vₘ</strong> - m³/mol</div>
+      <div class="formula"><strong>Vₘ = 22.414 × 10⁻³ m³/mol</strong></div>
+    </div>
+    
+    <div id="neutron-mass" class="formula-box" >
+      <h3>Neutron Mass</h3>
+      <div class="variables"><strong>mₙ</strong> - kg</div>
+      <div class="formula"><strong>mₙ = 1.67492749804 × 10⁻²⁷ kg</strong></div>
+    </div>
+    
+    <div id="newtonian-constant-gravitation" class="formula-box" >
+      <h3>Newtonian Constant of Gravitation</h3>
+      <div class="variables"><strong>G</strong> - m³/kg·s²</div>
+      <div class="formula"><strong>G = 6.67430 × 10⁻¹¹ m³/kg·s²</strong></div>
+    </div>
+    
+    <div id="planck-mass" class="formula-box" >
+      <h3>Planck Mass</h3>
+      <div class="variables"><strong>mₚ</strong> - kg</div>
+      <div class="formula"><strong>mₚ = 2.176434 × 10⁻⁸ kg</strong></div>
+    </div>
+    
+    <div id="proton-mass" class="formula-box" >
+      <h3>Proton Mass</h3>
+      <div class="variables"><strong>mₚ</strong> - kg</div>
+      <div class="formula"><strong>mₚ = 1.67262192369 × 10⁻²⁷ kg</strong></div>
+    </div>
+    
+    <div id="proton-electron-mass-ratio" class="formula-box" >
+      <h3>Proton-Electron Mass Ratio</h3>
+      <div class="variables"><strong>mₚ / mₑ</strong> - (dimensionless)</div>
+      <div class="formula"><strong>mₚ / mₑ = 1836.15267343</strong></div>
+    </div>
+    
+    <div id="standard-atmosphere" class="formula-box" >
+      <h3>Standard Atmosphere</h3>
+      <div class="variables"><strong>atm</strong> - Pa</div>
+      <div class="formula"><strong>1 atm = 101325 Pa</strong></div>
+    </div>
+    
+    <div id="standard-reference-sound-intensity" class="formula-box" >
+      <h3>Standard Reference Sound Intensity</h3>
+      <div class="variables">
+        <strong>Reference Sound Intensity (I₀)</strong> - W/m²
+      </div>
+      <div class="formula">
+        <strong>I₀ = 1.0 × 10⁻¹² W/m²</strong>
+      </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    </div>
+  
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+  // Toggle chapter lists when clicking on a big chapter
+  const bigChapters = document.querySelectorAll('.big-chapter');
+  bigChapters.forEach(chapter => {
+    chapter.addEventListener('click', function() {
+      const chapterList = chapter.nextElementSibling;
+      chapterList.classList.toggle('show');
+    });
+  });
+
+  // Search functionality
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', function() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const chapters = document.querySelectorAll('.chapter');
+    const formulaBoxes = document.querySelectorAll('.formula-box');
+
+    chapters.forEach(chapter => {
+      if (chapter.textContent.toLowerCase().includes(searchTerm)) {
+        chapter.style.display = 'block';
+      } else {
+        chapter.style.display = 'none';
+      }
+    });
+
+    formulaBoxes.forEach(formulaBox => {
+      if (formulaBox.textContent.toLowerCase().includes(searchTerm)) {
+        formulaBox.style.display = 'block';
+      } else {
+        formulaBox.style.display = 'none';
+      }
+    });
+  });
+});
+    // Function for search functionality
+    // Function to search and display content
+  function searchChapters() {
+  var input = document.getElementById('searchInput');
+  var filter = input.value.toUpperCase();
+  var allContents = document.querySelectorAll('.formula-box');
+
+  allContents.forEach(function(content) {
+    var title = content.querySelector('h3').textContent || content.querySelector('h3').innerText;
+    if (title.toUpperCase().indexOf(filter) > -1) {
+      content.style.display = "block";  // Show matching content
+    } else {
+      content.style.display = "none";  // Hide non-matching content
+    }
+  });
+}
+
+
+
+    // Function to toggle the display of the chapters
+  function toggleChapterList(id) {
+    var chapterList = document.getElementById(id);
+  chapterList.style.display = chapterList.style.display === 'none' ? 'block' : 'none';
+  }
+
+  // Function to show specific chapter content
+function showContent(contentId) {
+  var allContents = document.querySelectorAll('.formula-box');
+  allContents.forEach(function(content) {
+    content.style.display = 'none';  // Hide all content first
+  });
+
+  var selectedContent = document.getElementById(contentId);
+  if (selectedContent) {
+    selectedContent.style.display = 'block';  // Show the selected content
+    selectedContent.scrollIntoView({ behavior: 'smooth', block: 'start' });  // Smoothly scroll to it
+  }
+}
+
+
+
+
+    
+  </script>
+</body>
+</html>
