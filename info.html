@@ -1,72 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Information</title>
     <style>
         *, *::before, *::after {
-            box-sizing: border-box; 
+            box-sizing: border-box;
         }
-        
+
         body {
             margin: 0;
             padding: 0;
+            background-color: #3F4F44;
             display: flex;
             flex-direction: column;
-            align-items: center; 
-            font-family: Arial, sans-serif;
-            background-color: whitesmoke;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             height: 100vh;
-            box-sizing: border-box; 
+            box-sizing: border-box;
+            justify-content: center; /* Centers the content vertically */
         }
 
         .container {
             max-width: 600px;
-            margin: 20px; 
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            justify-content: center; 
+            background-color: #b59999;
+            margin: 20px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
-            color: #333;
-            margin: 0; 
+            color: #3F1A2B;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
         }
 
         p {
+            color: #3F1A2B;
             font-size: 18px;
-            color: #555;
-            line-height: 1.6;
-            margin-top: 0; 
+            line-height: 1.8;
+            margin-top: 0;
+            text-align: left;
         }
 
         .link {
-            color: red;
-            font-weight: bold;
-            cursor: pointer; 
+            color: #ED4A69;
+            font-weight: 600;
+            background-color: #FBB3C8;
             text-decoration: none;
-            text-align: center; 
-            display: block; 
-            margin-top: 10px; 
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
         }
-        
+
         .link:hover {
-            text-decoration: underline; 
+            text-decoration: underline;
+        }
+
+        .spacer {
+            margin-bottom: 60px;
         }
 
         .bottom-menu {
             display: flex;
             justify-content: space-around;
-            background-color: whitesmoke;
+            background-color: #B2183A;
             padding: 10px;
-            width: 100%; 
+            width: 100%;
             position: fixed; 
             bottom: 0; 
             left: 0; 
+            z-index: 10; 
         }
 
         .menu-btn {
@@ -80,37 +91,43 @@
             transform: scale(1.1);
         }
 
-        .spacer {
-            margin-bottom: 50px; /* Adjust this value according to your menu height */
-        }
-
     </style>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+
 </head>
+
 <body>
 
-<div class="container">
-    <h1>ข้อมูลผู้จัดทำ</h1>
-</div>
+    <div class="container">
+        <h1>ข้อมูลผู้จัดทำ</h1>
+        <p>
+            เนื่องด้วยปัจจุบันมีนักเรียน นักศึกษา และผู้ที่มีความสนใจในการค้นคว้าเกี่ยวกับสูตรฟิสิกส์
+            ทางทีมผู้พัฒนาพบว่าในการค้นหาสูตรฟิสิกส์ในหนังสือหรือทางอินเตอร์เน็ตใช้เวลานานในการค้นคว้าข้อมูล
+            ด้วยเหตุนี้จึงเกิดความคิดที่จะสร้างเว็บแอป “PHYDICS” ขึ้นมาซึ่งเป็นเว็บแอปรวบรวมสูตรฟิสิกส์
+            ในเว็บแอปได้จัดสูตรไว้ตามหมวดหมู่อย่างเป็นระเบียบ สามารถค้นหาสูตรที่ต้องการจะค้นหาได้ในที่เดียว
+            ทำให้เกิดความสะดวกรวดเร็วในการค้นหาและผู้ใช้งานสามารถนำไปประยุกต์ใช้ได้
+        </p>
+        
+        <!-- Red container for the 'แบบประเมิน' link -->
+        <a href="permean.html" class="link">แบบประเมิน</a>
+    </div>
 
-<p>เว็บแอปพลิเคชั่นนี้เป็นส่วนหนึ่งของโครงงาน....</p>
-<a class="link" onclick="window.open('https://example.com')">แบบประเมิน</a>
+    <div class="spacer"></div>
 
-<div class="spacer"></div> <!-- Spacer to prevent overlap with the bottom menu -->
-
-<div class="bottom-menu">
-    <a href="home.html">
-        <img src="image/homebtn.png" alt="Home" class="menu-btn">
-    </a>
-    <a href="chapter.html">
-        <img src="image/chapbtn.png" alt="Chapter" class="menu-btn">
-    </a>
-    <a href="search.html">
-        <img src="image/searchbtn.png" alt="Search" class="menu-btn">
-    </a>
-    <a href="info.html">
-        <img src="image/infobtn.png" alt="Info" class="menu-btn">
-    </a>
-</div>
+    <div class="bottom-menu">
+        <a href="home.html">
+            <img src="image/homebtn.png" alt="Home" class="menu-btn">
+        </a>
+        <a href="search.html">
+            <img src="image/searchbtn.png" alt="Search" class="menu-btn">
+        </a>
+        <a href="info.html">
+            <img src="image/infobtn.png" alt="Info" class="menu-btn">
+        </a>
+    </div>
 
 </body>
+
 </html>

@@ -18,19 +18,38 @@
             justify-content: center; 
             height: 100vh; 
             font-family: Arial, sans-serif;
-            background-color: whitesmoke;
+            background-color: #3F4F44;
+            position: relative;
+            overflow: hidden;
         }
 
         .home-logo {
             width: 220px;
             height: auto;
-            opacity: 0.8;
+            opacity: 0.9;
+            cursor: pointer;
+            animation: zoomInOut 4s ease-in-out infinite; /* Infinite loop */
+        }
+
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.1); /* Zoom in */
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
         }
 
         .bottom-menu {
             display: flex;
             justify-content: space-around;
-            background-color: whitesmoke;
+            background-color: #2C3930;
             padding: 10px;
             width: 100%; 
             position: absolute; 
@@ -52,20 +71,43 @@
             max-width: 100%; 
             height: auto; 
         }
+
+        /* Realistic Falling Logo Animation */
+        @keyframes fall {
+            0% {
+                transform: translateY(-300px);  /* Start way above the screen */
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(calc(50vh - 200px)); /* Midway point (accelerating) */
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);  /* End at the bottom */
+                opacity: 0;
+            }
+        }
+
+        .falling-logo {
+            position: absolute;
+            width: 50px;
+            height: auto;
+            opacity: 0;
+            animation: fall linear infinite;
+            animation-timing-function: ease-in; /* Make the falling speed increase */
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="home-logo">
+    <div class="home-logo" onclick="makeLogosFall()">
         <img src="image/logo.png" alt="Logo" class="home-logo">
     </div>
 
     <div class="bottom-menu">
         <a href="home.html">
             <img src="image/homebtn.png" alt="Home" class="menu-btn">
-        </a>
-        <a href="chapter.html">
-            <img src="image/chapbtn.png" alt="Chapter" class="menu-btn">
         </a>
         <a href="search.html">
             <img src="image/searchbtn.png" alt="Search" class="menu-btn">
@@ -74,6 +116,30 @@
             <img src="image/infobtn.png" alt="Info" class="menu-btn">
         </a>
     </div>
+
+    <script>
+        function makeLogosFall() {
+            setInterval(() => {
+                let newLogo = document.createElement('img');
+                newLogo.src = "image/lightlogo.png"; // Path to the logo image
+                newLogo.classList.add('falling-logo');
+                
+                // Randomize the horizontal position of the falling logos
+                newLogo.style.left = Math.random() * 100 + '%'; 
+
+                // Randomize the duration to simulate a natural fall
+                const fallDuration = Math.random() * 2 + 3 + 's'; // Between 3s and 5s
+                newLogo.style.animationDuration = fallDuration;
+
+                document.body.appendChild(newLogo);
+
+                // Remove logo after it finishes falling (fall duration)
+                setTimeout(() => {
+                    newLogo.remove();
+                }, parseFloat(fallDuration) * 1000); // Convert fall duration to milliseconds
+            }, 300); // Generate a new logo every 300ms
+        }
+    </script>
 
 </body>
 </html>

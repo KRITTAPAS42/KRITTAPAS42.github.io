@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ประเมินความพึงพอใจในการใช้ PHYDiCS</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .container {
+      max-width: 80%;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      color: #666;
+    }
+    .rating input {
+      margin: 10px;
+      font-size: 20px;
+    }
+    .rating label {
+      margin-right: 10px;
+      font-size: 16px;
+      color: #555;
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: none;
+    }
+    .submit-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .submit-btn:hover {
+      background-color: #218838;
+    }
+
+    .link {
+            color: #ED4A69;
+            font-weight: 600;
+            background-color: #FBB3C8;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>ประเมินความพึงพอใจในการใช้ PHYDiCS</h1>
+    <p>กรุณาประเมินความพึงพอใจในการใช้งานแอป PHYDiCS ของคุณ</p>
+
+    <!-- Form with action to home.html -->
+    <form action="home.html" method="POST">
+      <div class="rating">
+        <label for="rating1">1 (ไม่พึงพอใจ)</label>
+        <input type="radio" id="rating1" name="rating" value="1">
+        <input type="radio" id="rating2" name="rating" value="2">
+        <input type="radio" id="rating3" name="rating" value="3">
+        <input type="radio" id="rating4" name="rating" value="4">
+        <input type="radio" id="rating5" name="rating" value="5">
+        <label for="rating5">5 (พึงพอใจมาก)</label>
+      </div>
+
+      <h3>ข้อเสนอแนะ</h3>
+      <textarea name="feedback" placeholder="กรุณาระบุข้อเสนอแนะ หรือความคิดเห็นเกี่ยวกับแอป PHYDiCS ของคุณ"></textarea>
+
+      <a href="home.html">ส่ง</a>
+    </form>
+  </div>
+
+</body>
+</html>
