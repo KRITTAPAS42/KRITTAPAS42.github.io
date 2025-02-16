@@ -3,12 +3,12 @@
     "name": "PHYDiCS - Physics App",
     "icons": [
       {
-        "src": "/image/icon.png",
+        "src": "/image/iconsm.png",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "/image/icon.png",
+        "src": "/image/iconla.png",
         "sizes": "512x512",
         "type": "image/png"
       }
