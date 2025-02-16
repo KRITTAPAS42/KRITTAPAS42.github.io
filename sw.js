@@ -1,31 +1,30 @@
-// sw.js
-
 const CACHE_NAME = 'phy-dics-cache-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/home.html',
-  '/search.html',
-  '/info.html',
-  '/permean.html',
-  '/image/iconsm.png',
-  '/image/iconla.png',
-  '/image/chapterbtn.png',
-  '/image/homebtn.png',
-  '/image/infobtn.png',
-  '/image/lightlogo.png',
-  '/image/logo.png',
-  '/image/search.png',
+  './',
+  './index.html',
+  './home.html',
+  './search.html',
+  './info.html',
+  './permean.html',
+  './image/iconsm.png',
+  './image/iconla.png',
+  './image/chapterbtn.png',
+  './image/homebtn.png',
+  './image/infobtn.png',
+  './image/lightlogo.png',
+  './image/logo.png',
+  './image/search.png',
 ];
 
 // Install the Service Worker and cache essential files
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => {
-        return cache.addAll(urlsToCache);
-      })
-  );
+self.addEventListener('install', event => {
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(cache => {
+            return cache.addAll(urlsToCache).catch(err => {
+                console.error("Cache addAll failed:", err);
+            });
+        })
+    );
 });
 
 // Serve cached files when offline
