@@ -191,7 +191,6 @@ body {
       <div class="chapter"onclick="showContent('plastic-collision')">Plastic Collision</div>
       <div class="chapter"onclick="showContent('one-dimensional-elastic-collision')">One-dimensional Elastic Collision</div>
       <div class="chapter"onclick="showContent('work')">Work</div>
-      <div class="chapter"onclick="showContent('examples')">Examples</div>
       <div class="chapter"onclick="showContent('power')">Power</div>
       <div class="chapter"onclick="showContent('kinetic-energy')">Kinetic Energy</div>
       <div class="chapter"onclick="showContent('kinetic-energy-massive-rotating-body')">Kinetic Energy Of A Massive Rotating Body</div>
@@ -832,16 +831,6 @@ body {
       </div>
       <div class="formula">
         <strong>W = F × d</strong>
-      </div>
-    </div>
-    
-    <div id="examples" class="formula-box" >
-      <h3>Examples</h3>
-      <div class="variables">
-        <strong>examples</strong> - Various Units
-      </div>
-      <div class="formula">
-        <strong>Various formulas</strong>
       </div>
     </div>
     
@@ -2656,38 +2645,31 @@ body {
   <script>
   document.addEventListener("DOMContentLoaded", function() {
   // Toggle chapter lists when clicking on a big chapter
-  const bigChapters = document.querySelectorAll('.big-chapter');
+  const bigChapters = document.querySelectorAll(".big-chapter");
   bigChapters.forEach(chapter => {
-    chapter.addEventListener('click', function() {
+    chapter.addEventListener("click", function() {
       const chapterList = chapter.nextElementSibling;
-      chapterList.classList.toggle('show');
+      chapterList.classList.toggle("show");
     });
   });
 
   // Search functionality
-  const searchInput = document.getElementById('searchInput');
-  searchInput.addEventListener('input', function() {
+  const searchInput = document.getElementById("searchInput");
+  searchInput.addEventListener("input", function() {
     const searchTerm = searchInput.value.toLowerCase();
-    const chapters = document.querySelectorAll('.chapter');
-    const formulaBoxes = document.querySelectorAll('.formula-box');
+    const formulaBoxes = document.querySelectorAll(".formula-box");
 
-    chapters.forEach(chapter => {
-      if (chapter.textContent.toLowerCase().includes(searchTerm)) {
-        chapter.style.display = 'block';
+    formulaBoxes.forEach(box => {
+      const textContent = box.textContent.toLowerCase();
+      if (textContent.includes(searchTerm)) {
+        box.style.display = "block";
       } else {
-        chapter.style.display = 'none';
-      }
-    });
-
-    formulaBoxes.forEach(formulaBox => {
-      if (formulaBox.textContent.toLowerCase().includes(searchTerm)) {
-        formulaBox.style.display = 'block';
-      } else {
-        formulaBox.style.display = 'none';
+        box.style.display = "none";
       }
     });
   });
-});
+
+
     // Function for search functionality
     // Function to search and display content
   // Function for search functionality02
@@ -2707,30 +2689,27 @@ function searchChapters() {
 }
 
 
-
-
     // Function to toggle the display of the chapters
+  // Function to toggle the display of the chapters
   function toggleChapterList(id) {
     var chapterList = document.getElementById(id);
-  chapterList.style.display = chapterList.style.display === 'none' ? 'block' : 'none';
+    chapterList.style.display = chapterList.style.display === "none" ? "block" : "none";
   }
 
   // Function to show specific chapter content
-function showContent(contentId) {
-  var allContents = document.querySelectorAll('.formula-box');
-  allContents.forEach(function(content) {
-    content.style.display = 'none';  // Hide all content first
-  });
+  function showContent(contentId) {
+    var allContents = document.querySelectorAll(".formula-box");
+    allContents.forEach(function(content) {
+      content.style.display = "none";  // Hide all content first
+    });
 
-  var selectedContent = document.getElementById(contentId);
-  if (selectedContent) {
-    selectedContent.style.display = 'block';  // Show the selected content
-    selectedContent.scrollIntoView({ behavior: 'smooth', block: 'start' });  // Smoothly scroll to it
+    var selectedContent = document.getElementById(contentId);
+    if (selectedContent) {
+      selectedContent.style.display = "block";  // Show the selected content
+      selectedContent.scrollIntoView({ behavior: "smooth", block: "start" });  // Smoothly scroll to it
+    }
   }
-}
-
-
-
+});
 
     
   </script>
