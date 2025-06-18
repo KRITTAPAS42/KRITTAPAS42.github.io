@@ -1,22 +1,22 @@
 {
-    "short_name": "PHYDiCS",
-    "name": "PHYDiCS - Physics App",
+    "short_name": "PenquinHealJai",
+    "name": "PenquinHealJai - Mental Health App",
     "icons": [
       {
-        "src": "/image/iconsm.png",
+        "src": "/img/iconsm.png",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "/image/iconla.png",
+        "src": "/img/iconla.png",
         "sizes": "512x512",
         "type": "image/png"
       }
     ],
-    "start_url": "/home.html",
+    "start_url": "/account.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#28a745",
-    "description": "A PHYSICS DICTIONARY"
+    "description": "A MENTAL HEALTH HISTORY APP"
   }
   
