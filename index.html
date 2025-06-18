@@ -179,15 +179,15 @@
     import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
     const firebaseConfig = {
-  apiKey: "AIzaSyAuKfk6pdPc5ej5spgPED82uzu8PHucMds",
-  authDomain: "public-health-e8fc9.firebaseapp.com",
-  databaseURL: "https://public-health-e8fc9-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "public-health-e8fc9",
-  storageBucket: "public-health-e8fc9.firebasestorage.app",
-  messagingSenderId: "912640760614",
-  appId: "1:912640760614:web:9140025c48179271b83fe7",
-  measurementId: "G-1GXCPG7S7D"
-};
+      apiKey: "AIzaSyAuKfk6pdPc5ej5spgPED82uzu8PHucMds",
+      authDomain: "public-health-e8fc9.firebaseapp.com",
+      projectId: "public-health-e8fc9",
+      storageBucket: "public-health-e8fc9.firebasestorage.app",
+      messagingSenderId: "912640760614",
+      appId: "1:912640760614:web:9140025c48179271b83fe7",
+      measurementId: "G-1GXCPG7S7D"
+    };
+    
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const provider = new GoogleAuthProvider();
