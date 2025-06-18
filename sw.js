@@ -1,19 +1,15 @@
-const CACHE_NAME = 'phy-dics-cache-v1';
+const CACHE_NAME = 'pgh-mth-cache-v1';
 const urlsToCache = [
   './',
   './index.html',
   './home.html',
-  './search.html',
+  './account.html',
   './info.html',
-  './permean.html',
-  './image/iconsm.png',
-  './image/iconla.png',
-  './image/chapterbtn.png',
-  './image/homebtn.png',
-  './image/infobtn.png',
-  './image/lightlogo.png',
-  './image/logo.png',
-  './image/search.png',
+  './img/iconsm.png',
+  './img/iconla.png',
+  './img/image.jpg',
+  './img/1.jpg',
+  './img/2.jpg',
 ];
 
 // Install the Service Worker and cache essential files
