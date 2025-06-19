@@ -3,14 +3,14 @@
     "name": "PenquinHealJai - Mental Health App",
     "icons": [
       {
-        "src": "/img/small.jpeg",
+        "src": "/img/small.png",
         "sizes": "192x192",
-        "type": "image/jpeg" 
+        "type": "image/png" 
       },
       {
-        "src": "/img/big.jpeg",
+        "src": "/img/big.png",
         "sizes": "512x512",
-        "type": "image/jpeg"
+        "type": "image/png"
       }
     ],
     "start_url": "/account.html",
