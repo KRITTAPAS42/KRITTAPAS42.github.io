@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHYDiCS</title>
+    
+    <link rel="manifest" href="manifest.json"> 
+
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box; 
+        }
+        
+        body {
+            background-color: #3F4F44;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
+            font-family: Arial, sans-serif;
+            height: 100vh; 
+            overflow-y: auto; 
+        }
+
+        .welcome {
+            text-align: center;
+        }
+
+        .logo {
+            width: 300px;  
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .instruction-box {
+      position: fixed;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      display: none; /* Hidden initially */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .instruction-box button {
+      margin-left: 5%;
+      background: #f44336;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    
+    </style>
+
+</head>
+<body>
+
+    <div class="welcome">
+        <a href="home.html">
+            <img src="image/logo.png" alt="Logo" class="logo">
+        </a>
+    </div>
+
+    <div id="instructionBox" class="instruction-box">
+        To add this app to your home screen:
+        <ul>
+          <li>On Android: Tap the menu icon (three dots) and select "Add to Home screen".</li>
+          <li>On iOS: Tap the share icon and select "Add to Home Screen".</li>
+          <li>On web: Tap the PHYDiCS logo at the center".</li>
+        </ul>
+      </div>
+    
+      <script>
+        // Show the instruction box when the page loads
+        window.onload = function() {
+          document.getElementById('instructionBox').style.display = 'block';
+        };
+    
+        // Dismiss the instruction box
+        document.getElementById('dismissBtn').onclick = function() {
+          document.getElementById('instructionBox').style.display = 'none';
+        };
+
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.register('sw.js', { scope: './' }) 
+              .then((registration) => {
+                console.log('Service Worker registered with scope: ', registration.scope);
+              })
+              .catch((error) => {
+                console.log('Service Worker registration failed: ', error);
+              });
+          });
+        }
+    </script>
+
+</body>
+</html>
