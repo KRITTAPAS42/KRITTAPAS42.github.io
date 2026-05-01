@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ประเมินความพึงพอใจในการใช้ PHYDiCS</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    .container {
+      max-width: 60%;
+      text-align: center;
+      align-items: center;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    p {
+      color: #666;
+    }
+    fieldset {
+      border: none;
+      text-align: center;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    legend {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .rating input {
+      margin: 5px;
+    }
+    textarea {
+      width: 80%;
+      height: 150px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      resize: none;
+      display: block;
+      margin: 0 auto 20px;
+    }
+    .submit-btn {
+      background-color: #a72828;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+    .submit-btn:hover {
+      background-color: #882121;
+    }
+
+    .back-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+    .back-btn:hover {
+      background-color: #218838;
+    }
+
+    /* Add 15px space between the buttons */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 15px; /* Space between buttons */
+      margin-top: 20px;
+    }
+
+    .button-container button {
+      margin: 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>ประเมินความพึงพอใจในการใช้ PHYDiCS</h1>
+    <p>กรุณาประเมินความพึงพอใจในการใช้งานแอป PHYDiCS ของคุณ</p>
+
+    <form action="https://formspree.io/f/xovjkbzk" method="POST">
+      
+      <fieldset>
+        <legend>ความรวดเร็ว</legend>
+        <div class="rating">
+          <label for="speed1">น้อยที่สุด</label>
+          <input type="radio" id="speed1" name="speed" value="1">
+          <input type="radio" id="speed2" name="speed" value="2">
+          <input type="radio" id="speed3" name="speed" value="3">
+          <input type="radio" id="speed4" name="speed" value="4">
+          <input type="radio" id="speed5" name="speed" value="5">
+          <label for="speed5">มากที่สุด</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>ความถูกต้อง</legend>
+        <div class="rating">
+          <label for="comfort1">น้อยที่สุด</label>
+          <input type="radio" id="comfort1" name="comfort" value="1">
+          <input type="radio" id="comfort2" name="comfort" value="2">
+          <input type="radio" id="comfort3" name="comfort" value="3">
+          <input type="radio" id="comfort4" name="comfort" value="4">
+          <input type="radio" id="comfort5" name="comfort" value="5">
+          <label for="comfort5">มากที่สุด</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>ความเข้าใจในการใช้งาน</legend>
+        <div class="rating">
+          <label for="usability1">น้อยที่สุด</label>
+          <input type="radio" id="usability1" name="usability" value="1">
+          <input type="radio" id="usability2" name="usability" value="2">
+          <input type="radio" id="usability3" name="usability" value="3">
+          <input type="radio" id="usability4" name="usability" value="4">
+          <input type="radio" id="usability5" name="usability" value="5">
+          <label for="usability5">มากที่สุด</label>
+        </div>
+      </fieldset>
+
+      <h3>ข้อเสนอแนะ</h3>
+      <textarea name="feedback" placeholder="กรุณาระบุข้อเสนอแนะ หรือความคิดเห็นเกี่ยวกับแอป PHYDiCS ของคุณ"></textarea>
+
+      <!-- Wrap the buttons in a container for side-by-side layout with 15px space -->
+      <div class="button-container">
+        <button type="button" class="back-btn" onclick="window.location.href='home.html';">กลับ</button>
+        <button type="submit" class="submit-btn">ส่ง</button>
+      </div>
+      
+    </form>
+  </div>
+
+  <link rel="manifest" href="/manifest.json">
+
+</body>
+</html>
