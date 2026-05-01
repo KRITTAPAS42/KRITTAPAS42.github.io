@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proj365</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --yellow: #FFD700;
+    --yellow-light: #FFF4B8;
+    --yellow-soft: #FFEC6E;
+    --yellow-deep: #F5A623;
+    --gold: #C9973B;
+    --cream: #FFFDF0;
+    --dark: #3A2E00;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* ── Radial glow background ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,215,0,0.30) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 20% 80%, rgba(255,236,110,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 80% 10%, rgba(245,166,35,0.15) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Stars ── */
+  .stars-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .star {
+    position: absolute;
+    background: var(--yellow-deep);
+    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    animation: float-star linear infinite;
+    opacity: 0;
+  }
+
+  @keyframes float-star {
+    0%   { transform: translateY(110vh) rotate(0deg);  opacity: 0; }
+    5%   { opacity: 0.8; }
+    90%  { opacity: 0.6; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* ── Floating images ── */
+  .float-img {
+    position: fixed;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(201,151,59,0.25);
+    animation: drift linear infinite;
+    opacity: 0.88;
+  }
+
+  @keyframes drift {
+    0%   { transform: translateY(0px) rotate(var(--rot-a)); }
+    50%  { transform: translateY(var(--drift-y)) rotate(var(--rot-b)); }
+    100% { transform: translateY(0px) rotate(var(--rot-a)); }
+  }
+
+  .fi-1 {
+    width: 100px; left: 4%; top: 12%;
+    --rot-a: -4deg; --rot-b: 2deg; --drift-y: 18px;
+    animation-duration: 6s;
+  }
+  .fi-2 {
+    width: 90px; right: 5%; top: 20%;
+    --rot-a: 5deg; --rot-b: -3deg; --drift-y: -14px;
+    animation-duration: 7.5s;
+  }
+  .fi-3 {
+    width: 85px; left: 8%; bottom: 15%;
+    --rot-a: -6deg; --rot-b: 4deg; --drift-y: 20px;
+    animation-duration: 8s;
+  }
+
+  /* ── Title ── */
+  .title {
+    position: fixed;
+    top: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .title h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--dark);
+    text-shadow: 0 2px 12px rgba(255,215,0,0.5);
+  }
+
+  .title-line {
+    height: 2px;
+    width: 60px;
+    margin: 4px auto 0;
+    background: linear-gradient(90deg, transparent, var(--yellow-deep), transparent);
+    border-radius: 2px;
+  }
+
+  /* ── Card ── */
+  .card {
+    position: relative;
+    z-index: 5;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1.5px solid rgba(255,215,0,0.45);
+    border-radius: 32px;
+    padding: 40px 36px 36px;
+    box-shadow:
+      0 20px 60px rgba(201,151,59,0.18),
+      0 4px 16px rgba(255,215,0,0.12),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+    text-align: center;
+    min-width: 300px;
+  }
+
+  /* ── Passcode display ── */
+  .code-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--dark);
+    margin-bottom: 28px;
+    min-height: 2.6rem;
+    transition: all 0.2s;
+  }
+
+  .code-char {
+    display: inline-block;
+    min-width: 1.6rem;
+    text-align: center;
+    color: var(--yellow-deep);
+  }
+
+  .code-char.filled {
+    color: var(--dark);
+    animation: pop 0.15s ease;
+  }
+
+  @keyframes pop {
+    0%  { transform: scale(1.5); }
+    100%{ transform: scale(1); }
+  }
+
+  /* ── Dots ── */
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2.5px solid var(--yellow-deep);
+    background: transparent;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .dot.filled {
+    background: var(--yellow-deep);
+    transform: scale(1.15);
+    box-shadow: 0 0 8px rgba(245,166,35,0.5);
+  }
+
+  /* ── Keypad ── */
+  .keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .key {
+    width: 72px;
+    height: 72px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    border-radius: 20px;
+    border: 1.5px solid rgba(255,215,0,0.4);
+    background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,244,184,0.6));
+    box-shadow: 0 4px 14px rgba(201,151,59,0.14), inset 0 1px 0 rgba(255,255,255,0.8);
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .key:hover {
+    background: linear-gradient(145deg, rgba(255,215,0,0.25), rgba(255,236,110,0.4));
+    box-shadow: 0 6px 20px rgba(201,151,59,0.25);
+    transform: translateY(-2px);
+  }
+
+  .key:active {
+    transform: scale(0.88);
+    box-shadow: 0 2px 6px rgba(201,151,59,0.1);
+  }
+
+  .key-del {
+    font-size: 1.4rem;
+    color: var(--gold);
+  }
+
+  .key-clear {
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: #888;
+  }
+
+  /* ── Animations ── */
+  .shake { animation: shake 0.4s; }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%     { transform: translateX(-10px); }
+    40%     { transform: translateX(10px); }
+    60%     { transform: translateX(-8px); }
+    80%     { transform: translateX(8px); }
+  }
+
+  .correct-flash { animation: correct-flash 0.5s; }
+  @keyframes correct-flash {
+    0%   { background: rgba(255,255,255,0.75); }
+    50%  { background: rgba(255,215,0,0.35); box-shadow: 0 0 60px rgba(255,215,0,0.5); }
+    100% { background: rgba(255,255,255,0.75); }
+  }
+
+  /* ── Sparkle burst on correct ── */
+  .sparkle {
+    position: fixed; inset: 0; z-index: 20; pointer-events: none;
+    display: none;
+  }
+  .sparkle.show { display: block; }
+  .sp {
+    position: absolute;
+    width: 10px; height: 10px;
+    background: var(--yellow);
+    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    animation: burst 0.7s forwards;
+  }
+  @keyframes burst {
+    0%   { transform: translate(0,0) scale(0); opacity: 1; }
+    100% { transform: translate(var(--bx), var(--by)) scale(1.5); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Stars -->
+<div class="stars-layer" id="starsLayer"></div>
+
+<!-- Floating images -->
+<img src="img1.png" class="float-img fi-1" alt="" onerror="this.style.display='none'">
+<img src="img2.png" class="float-img fi-2" alt="" onerror="this.style.display='none'">
+<img src="img3.png" class="float-img fi-3" alt="" onerror="this.style.display='none'">
+
+<!-- Title -->
+<div class="title">
+  <h1>Proj365</h1>
+  <div class="title-line"></div>
+</div>
+
+<!-- Sparkle layer -->
+<div class="sparkle" id="sparkle"></div>
+
+<!-- Main card -->
+<div class="card" id="container">
+  <!-- Passcode display -->
+  <div class="code-display" id="codeDisplay">
+    <span class="code-char" id="c0">X</span>
+    <span class="code-char" id="c1">X</span>
+    <span class="code-char" id="c2">X</span>
+    <span class="code-char" id="c3">X</span>
+  </div>
+
+  <!-- Dots -->
+  <div class="dots">
+    <div class="dot" id="d0"></div>
+    <div class="dot" id="d1"></div>
+    <div class="dot" id="d2"></div>
+    <div class="dot" id="d3"></div>
+  </div>
+
+  <!-- Keypad -->
+  <div class="keypad">
+    <button class="key" onclick="press(1)">1</button>
+    <button class="key" onclick="press(2)">2</button>
+    <button class="key" onclick="press(3)">3</button>
+    <button class="key" onclick="press(4)">4</button>
+    <button class="key" onclick="press(5)">5</button>
+    <button class="key" onclick="press(6)">6</button>
+    <button class="key" onclick="press(7)">7</button>
+    <button class="key" onclick="press(8)">8</button>
+    <button class="key" onclick="press(9)">9</button>
+    <button class="key key-del" onclick="deleteOne()">⌫</button>
+    <button class="key" onclick="press(0)">0</button>
+    <button class="key key-clear" onclick="clearCode()">CLR</button>
+  </div>
+</div>
+
+<script>
+  /* ── Stars ── */
+  const starsLayer = document.getElementById('starsLayer');
+  const STAR_COUNT = 28;
+  for (let i = 0; i < STAR_COUNT; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = 8 + Math.random() * 16;
+    s.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      animation-duration:${7 + Math.random()*12}s;
+      animation-delay:${Math.random()*14}s;
+      opacity:0;
+    `;
+    starsLayer.appendChild(s);
+  }
+
+  /* ── Passcode logic ── */
+  let code = '';
+  const correctCode = '1506';
+  const container = document.getElementById('container');
+
+  function updateDisplay() {
+    for (let i = 0; i < 4; i++) {
+      const charEl = document.getElementById('c' + i);
+      const dotEl  = document.getElementById('d' + i);
+      if (i < code.length) {
+        charEl.textContent = code[i];
+        charEl.classList.add('filled');
+        dotEl.classList.add('filled');
+      } else {
+        charEl.textContent = 'X';
+        charEl.classList.remove('filled');
+        dotEl.classList.remove('filled');
+      }
+    }
+  }
+
+  function press(num) {
+    if (code.length < 4) {
+      code += num;
+      updateDisplay();
+    }
+    if (code.length === 4) checkCode();
+  }
+
+  function deleteOne() {
+    code = code.slice(0, -1);
+    updateDisplay();
+  }
+
+  function clearCode() {
+    code = '';
+    updateDisplay();
+  }
+
+  function checkCode() {
+    if (code === correctCode) {
+      container.classList.add('correct-flash');
+      showSparkles();
+      setTimeout(() => { window.location.href = 'ani.html'; }, 900);
+    } else {
+      container.classList.add('shake');
+      setTimeout(() => {
+        container.classList.remove('shake');
+        clearCode();
+      }, 420);
+    }
+  }
+
+  function showSparkles() {
+    const sp = document.getElementById('sparkle');
+    sp.innerHTML = '';
+    sp.classList.add('show');
+    const cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    for (let i = 0; i < 20; i++) {
+      const el = document.createElement('div');
+      el.className = 'sp';
+      const angle = (i / 20) * Math.PI * 2;
+      const dist  = 80 + Math.random() * 120;
+      el.style.cssText = `left:${cx}px;top:${cy}px;--bx:${Math.cos(angle)*dist}px;--by:${Math.sin(angle)*dist}px;animation-delay:${Math.random()*0.2}s`;
+      sp.appendChild(el);
+    }
+    setTimeout(() => sp.classList.remove('show'), 800);
+  }
+
+  updateDisplay();
+</script>
+</body>
+</html>

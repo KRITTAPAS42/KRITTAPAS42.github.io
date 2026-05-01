@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proj365</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --yellow: #FFD700;
+    --yellow-light: #FFF4B8;
+    --yellow-soft: #FFEC6E;
+    --yellow-deep: #F5A623;
+    --gold: #C9973B;
+    --cream: #FFFDF0;
+    --dark: #3A2E00;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 90px 20px 40px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(255,215,0,0.28) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 40% at 15% 75%, rgba(255,236,110,0.16) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 85% 10%, rgba(245,166,35,0.13) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Stars */
+  .stars-layer { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+  .star {
+    position: absolute;
+    background: var(--yellow-deep);
+    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    animation: float-star linear infinite;
+    opacity: 0;
+  }
+  @keyframes float-star {
+    0%   { transform: translateY(110vh) rotate(0deg);  opacity: 0; }
+    5%   { opacity: 0.7; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
+
+  /* Floating images */
+  .float-img {
+    position: fixed;
+    z-index: 2;
+    pointer-events: none;
+    border-radius: 16px;
+    box-shadow: 0 8px 28px rgba(201,151,59,0.22);
+    animation: drift linear infinite;
+    opacity: 0.85;
+  }
+  @keyframes drift {
+    0%   { transform: translateY(0px) rotate(var(--rot-a)); }
+    50%  { transform: translateY(var(--drift-y)) rotate(var(--rot-b)); }
+    100% { transform: translateY(0px) rotate(var(--rot-a)); }
+  }
+  .fi-1 { width: 90px; left: 3%; top: 15%; --rot-a:-4deg;--rot-b:2deg;--drift-y:18px; animation-duration:6s; }
+  .fi-2 { width: 82px; right: 4%; top: 22%; --rot-a:5deg;--rot-b:-3deg;--drift-y:-14px; animation-duration:7.5s; }
+  .fi-3 { width: 78px; left: 6%; bottom: 14%; --rot-a:-6deg;--rot-b:4deg;--drift-y:20px; animation-duration:8s; }
+
+  /* Title */
+  .title {
+    position: fixed; top: 22px; left: 50%; transform: translateX(-50%);
+    z-index: 10; text-align: center; pointer-events: none;
+  }
+  .title h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--dark);
+    text-shadow: 0 2px 12px rgba(255,215,0,0.5);
+  }
+  .title-line {
+    height: 2px; width: 60px; margin: 4px auto 0;
+    background: linear-gradient(90deg, transparent, var(--yellow-deep), transparent);
+    border-radius: 2px;
+  }
+
+  /* Video wrapper */
+  .video-wrap {
+    position: relative; z-index: 5;
+    width: min(88%, 820px);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow:
+      0 0 0 3px rgba(255,215,0,0.4),
+      0 20px 60px rgba(201,151,59,0.22),
+      0 4px 14px rgba(255,215,0,0.14);
+    animation: rise 0.7s ease both;
+  }
+  @keyframes rise {
+    from { opacity:0; transform: translateY(30px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+
+  video { width: 100%; display: block; }
+
+  /* Buttons */
+  .buttons {
+    position: relative; z-index: 5;
+    margin-top: 28px;
+    display: flex;
+    gap: 16px;
+    animation: rise 0.7s 0.2s ease both;
+  }
+
+  .btn {
+    padding: 13px 32px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.05em;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--yellow), var(--yellow-deep));
+    color: var(--dark);
+    box-shadow: 0 6px 22px rgba(245,166,35,0.4), 0 2px 6px rgba(245,166,35,0.2);
+  }
+
+  .btn-secondary {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(8px);
+    color: var(--dark);
+    border: 1.5px solid rgba(255,215,0,0.5);
+    box-shadow: 0 4px 16px rgba(201,151,59,0.14);
+  }
+
+    /* Badge */
+  .badge {
+    position: relative; z-index: 5;
+    margin-bottom: 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: linear-gradient(135deg, var(--yellow), var(--yellow-deep));
+    color: var(--dark);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 50px;
+    box-shadow: 0 4px 14px rgba(245,166,35,0.3);
+    animation: rise 0.5s ease both;
+  }
+
+
+  .btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    transition: background 0.18s;
+    border-radius: inherit;
+  }
+  .btn:hover::after { background: rgba(255,255,255,0.15); }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(245,166,35,0.35); }
+  .btn:active { transform: translateY(0) scale(0.96); }
+</style>
+</head>
+<body>
+
+<div class="stars-layer" id="starsLayer"></div>
+<img src="img1.png" class="float-img fi-1" alt="" onerror="this.style.display='none'">
+<img src="img2.png" class="float-img fi-2" alt="" onerror="this.style.display='none'">
+<img src="img3.png" class="float-img fi-3" alt="" onerror="this.style.display='none'">
+
+<div class="title">
+  <h1>Proj365</h1>
+  <div class="title-line"></div>
+</div>
+
+<div class="badge">🎬 Animation</div>
+
+<div class="video-wrap">
+  <video controls>
+    <source src="proj_365.mp4" type="video/mp4">
+  </video>
+</div>
+
+<div class="buttons">
+  <button class="btn btn-secondary" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="btn btn-primary"   onclick="location.href='bts.html'">🎬 BTS</button>
+</div>
+
+<script>
+  const starsLayer = document.getElementById('starsLayer');
+  for (let i = 0; i < 24; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    const size = 7 + Math.random() * 15;
+    s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${7+Math.random()*12}s;animation-delay:${Math.random()*14}s;`;
+    starsLayer.appendChild(s);
+  }
+</script>
+</body>
+</html>

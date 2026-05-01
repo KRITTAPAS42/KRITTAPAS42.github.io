@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fastnote</title>
+
+	<link rel="manifest" href="manifest.json">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; font-family: sans-serif; }
+
+    #toolbar {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      right: 10px;	
+      z-index: 10;
+      background: #1e88e5;
+      padding: 8px 12px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .pen-buttons, .right-tools {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #toolbar button {
+      background: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #toolbar button:hover { background: #eee; }
+
+    #toolbar button.black { color: black; }
+    #toolbar button.red { color: red; }
+    #toolbar button.blue { color: blue; }
+    #toolbar button.green { color: green; }
+
+    #sizeSlider {
+      width: 100px;
+      accent-color: #fff;
+    }
+
+    #canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      touch-action: none;
+    }
+
+    #display {
+      position: fixed;
+      bottom: 70px;
+      right: 20px;
+      font-size: 32px;
+      background: rgba(255,255,255,0.7);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    .btn-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-container button {
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    #result {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 40px;
+      background: rgba(255,255,255,0.9);
+      padding: 20px 40px;
+      border-radius: 10px;
+      display: none;
+      z-index: 15;
+    }
+  </style>
+</head>
+<body>
+  <div id="toolbar">
+    <div class="pen-buttons">
+      <button class="black" onclick="setMode('pen', 'black')">Black</button>
+      <button class="blue" onclick="setMode('pen', 'blue')">Blue</button>
+      <button class="red" onclick="setMode('pen', 'red')">Red</button>
+      <button class="green" onclick="setMode('pen', 'green')">Green</button>
+      <button onclick="setMode('eraser')" style="margin-left: 20px;">Eraser</button>
+      <input type="range" id="sizeSlider" min="0.25" max="2.5" step="0.1" value="1" title="Size Scale" />
+    </div>
+    <div class="right-tools">
+      <button onclick="undo()">Undo</button>
+      <button onclick="redo()">Redo</button>
+    </div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+
+  <div class="btn-container">
+    <button id="startBtn" onclick="startTimer()" style="display:none">Start</button>
+    <button id="stopBtn" onclick="stopTimer()" style="display:none">Stop</button>
+    <button id="endBtn" onclick="endTimer()" style="display:none">End</button>
+  </div>
+
+  <div id="display">00:00</div>
+  <div id="result"></div>
+
+  <script>
+    // Stopwatch
+    let startTime = null;
+    let elapsed = 0;
+    let timerInterval = null;
+    let running = false;
+
+    function formatTime(ms) {
+      let totalSeconds = Math.floor(ms / 1000);
+      let  minutes = String(Math.floor(totalSeconds / 60)).padStart(2, '0');
+      let seconds = String(totalSeconds % 60).padStart(2, '0');
+      return `${minutes}:${seconds}`;
+    }
+
+    function updateDisplay() {
+      let now = Date.now();
+      let diff = now - startTime + elapsed;
+      document.getElementById('display').innerText = formatTime(diff);
+    }
+
+    function startTimer() {
+      if (!running) {
+        startTime = Date.now();
+        timerInterval = setInterval(updateDisplay, 1000);
+        running = true;
+        document.getElementById('startBtn').style.display = "none";
+        document.getElementById('stopBtn').style.display = "inline-block";
+        document.getElementById('endBtn').style.display = "none";
+        document.getElementById('result').style.display = "none";
+      }
+    }
+
+    function stopTimer() {
+      if (running) {
+        elapsed += Date.now() - startTime;
+        clearInterval(timerInterval);
+        running = false;
+        const btn = document.getElementById('startBtn');
+        btn.innerText = "Resume";
+        btn.style.display = "inline-block";
+        document.getElementById('stopBtn').style.display = "none";
+        document.getElementById('endBtn').style.display = "inline-block";
+      }
+    }
+
+		// Make the buttons visible on page load or after starting
+	document.getElementById('startBtn').style.display = "inline-block";
+	document.getElementById('stopBtn').style.display = "none";  // Initially hidden
+	document.getElementById('endBtn').style.display = "none";   // Initially hidden
+
+    function endTimer() {
+      if (running) stopTimer();
+      const finalTime = formatTime(elapsed);
+      document.getElementById('result').innerText = `Time: ${finalTime}`;
+      document.getElementById('result').style.display = "block";
+      elapsed = 0;
+      document.getElementById('display').innerText = "00:00";
+      clearCanvas();
+
+      const btn = document.getElementById('startBtn');
+      btn.innerText = "Start";
+      btn.style.display = "inline-block";
+      document.getElementById('stopBtn').style.display = "none";
+      document.getElementById('endBtn').style.display = "none";
+
+      hasStartedDrawing = false;
+    }
+
+    // Drawing
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Set fixed size for the canvas
+    canvas.width = 1200;
+    canvas.height = 750;
+
+    let drawing = false;
+    let mode = 'pen';
+    let color = 'black';
+    let sizeScale = 1;
+    const basePenWidth = 2;
+    const baseEraserWidth = 30;
+
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+
+    let history = [];
+    let redoStack = [];
+    let hasStartedDrawing = false;
+
+    function saveState() {
+      redoStack = [];
+      history.push(canvas.toDataURL());
+      if (history.length > 30) history.shift();
+    }
+
+    function undo() {
+      if (history.length === 0) return;
+      redoStack.push(canvas.toDataURL());
+      let img = new Image();
+      img.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+      };
+      img.src = history.pop();
+    }
+
+    function redo() {
+      if (redoStack.length === 0) return;
+      history.push(canvas.toDataURL());
+      let img = new Image();
+      img.onload = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+      };
+      img.src = redoStack.pop();
+    }
+
+    function updateLineWidth() {
+      ctx.lineWidth = (mode === 'pen') ? basePenWidth * sizeScale : baseEraserWidth * sizeScale;
+    }
+
+    function setMode(m, c = 'black') {
+      mode = m;
+      color = c;
+      ctx.globalCompositeOperation = (m === 'eraser') ? 'destination-out' : 'source-over';
+      ctx.strokeStyle = color;
+      updateLineWidth();
+    }
+
+    document.getElementById('sizeSlider').addEventListener('input', function () {
+      sizeScale = parseFloat(this.value);
+      updateLineWidth();
+    });
+
+    canvas.addEventListener('pointerdown', (e) => {
+      if (e.pointerType !== 'pen') return; // วาดเฉพาะ Apple Pencil
+      if (!running && !hasStartedDrawing) {
+        hasStartedDrawing = true;
+        startTimer();
+      }
+      drawing = true;
+      ctx.beginPath();
+      ctx.moveTo(e.clientX, e.clientY);
+      saveState();
+    });
+
+    canvas.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'pen') return;
+      if (!drawing) return;
+      ctx.lineTo(e.clientX, e.clientY);
+      ctx.stroke();
+    });
+
+    canvas.addEventListener('pointerup', (e) => {
+      if (e.pointerType !== 'pen') return;
+      drawing = false;
+    });
+
+    function clearCanvas() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      history = [];
+      redoStack = [];
+    }
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered:', reg.scope))
+        .catch(err => console.log('Service Worker failed:', err));
+    });
+  }
+</script>
+</body>
+</html>
