@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <title>Fastnote</title>
 
-	<link rel="manifest" href="manifest.json">
-
+  <link rel="manifest" href="/FastNote/manifest.json">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -294,7 +293,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
+      navigator.serviceWorker.register('sw-fastnote.js')
         .then(reg => console.log('Service Worker registered:', reg.scope))
         .catch(err => console.log('Service Worker failed:', err));
     });

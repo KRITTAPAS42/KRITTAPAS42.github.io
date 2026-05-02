@@ -6,6 +6,10 @@
 <title>Proj365</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
+<link rel="manifest" href="/proj365/manifest.json">
+
+
+
 <style>
   :root {
     --yellow: #FFD700;
@@ -337,6 +341,15 @@
 </div>
 
 <script>
+
+  if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/proj365/proj365-sw.js')
+      .then(reg => console.log('Proj365 SW:', reg.scope))
+      .catch(err => console.log('SW failed:', err));
+  });
+}
+
   /* ── Stars ── */
   const starsLayer = document.getElementById('starsLayer');
   const STAR_COUNT = 28;

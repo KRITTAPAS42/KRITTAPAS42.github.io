@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="manifest" href="/PHYDiCS/manifest.json">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHYDiCS</title>
@@ -83,29 +84,28 @@
   <button id="dismissBtn">Close</button>
 </div>
     
-      <script>
-        // Show the instruction box when the page loads
-        window.onload = function() {
-          document.getElementById('instructionBox').style.display = 'block';
-        };
-    
-        // Dismiss the instruction box
-        document.getElementById('dismissBtn').onclick = function() {
-          document.getElementById('instructionBox').style.display = 'none';
-        };
+<script>
+  // Show instruction box on load
+  window.addEventListener('load', () => {
+    document.getElementById('instructionBox').style.display = 'block';
 
-        if ('serviceWorker' in navigator) {
-          window.addEventListener('load', () => {
-            navigator.serviceWorker.register('sw.js', { scope: './' }) 
-              .then((registration) => {
-                console.log('Service Worker registered with scope: ', registration.scope);
-              })
-              .catch((error) => {
-                console.log('Service Worker registration failed: ', error);
-              });
-          });
-        }
-    </script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/PHYDiCS/sw-phydics.js')
+        .then((registration) => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch((error) => {
+          console.log('Service Worker registration failed:', error);
+        });
+    }
+  });
+
+  // Dismiss instruction box
+  document.getElementById('dismissBtn').onclick = function () {
+    document.getElementById('instructionBox').style.display = 'none';
+  };
+</script>
 
 </body>
 </html>
