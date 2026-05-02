@@ -1,6 +1,6 @@
 {
   "name": "PHYDiCS",
-  "short_name": "PHY",
+  "short_name": "PHYDiCS",
   "start_url": "/PHYDiCS/phyindex.html",
   "scope": "/PHYDiCS/",
   "display": "standalone",
