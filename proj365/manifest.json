@@ -1,6 +1,6 @@
 {
   "name": "Proj365",
-  "short_name": "365",
+  "short_name": "proj_365",
   "start_url": "/proj365/home.html",
   "scope": "/proj365/",
   "display": "standalone",
