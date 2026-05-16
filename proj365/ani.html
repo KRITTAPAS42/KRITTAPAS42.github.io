@@ -48,8 +48,8 @@
   .stars-layer { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
   .star {
     position: absolute;
-    background: var(--yellow-deep);
-    clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
+    /* background: var(--yellow-deep); */
+    /* clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%); */
     animation: float-star linear infinite;
     opacity: 0;
   }
@@ -66,7 +66,6 @@
     z-index: 2;
     pointer-events: none;
     border-radius: 16px;
-    box-shadow: 0 8px 28px rgba(201,151,59,0.22);
     animation: drift linear infinite;
     opacity: 0.85;
   }
@@ -190,8 +189,8 @@
 <body>
 
 <div class="stars-layer" id="starsLayer"></div>
-<img src="img1.png" class="float-img fi-1" alt="" onerror="this.style.display='none'">
-<img src="img2.png" class="float-img fi-2" alt="" onerror="this.style.display='none'">
+<!-- <img src="img1.png" class="float-img fi-1" alt="" onerror="this.style.display='none'"> -->
+<!-- <img src="img1.png" class="float-img fi-2" alt="" onerror="this.style.display='none'"> -->
 <img src="img3.png" class="float-img fi-3" alt="" onerror="this.style.display='none'">
 
 <div class="title">
@@ -208,16 +207,17 @@
 </div>
 
 <div class="buttons">
-  <button class="btn btn-secondary" onclick="location.href='home.html'">🏠 Home</button>
+  <button class="btn btn-secondary" onclick="location.href='365home.html'">🏠 Home</button>
   <button class="btn btn-primary"   onclick="location.href='bts.html'">🎬 BTS</button>
 </div>
 
 <script>
   const starsLayer = document.getElementById('starsLayer');
   for (let i = 0; i < 24; i++) {
-    const s = document.createElement('div');
+    const s = document.createElement('img');
+    s.src = 'img2.png';
     s.className = 'star';
-    const size = 7 + Math.random() * 15;
+    const size = 40 + Math.random() * 16;
     s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${7+Math.random()*12}s;animation-delay:${Math.random()*14}s;`;
     starsLayer.appendChild(s);
   }
